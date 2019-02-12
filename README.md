@@ -160,6 +160,102 @@ HTML:
 
 ### 1.3 扩展这个VueJS应用
 
+上节课,我们已经创建并开始了第一个Vue应用,现在让我们稍微提高一点,并且在下面的课程中更加深入地学习它
+
+现在,我需要添加一个`<input>`标签,键入input然后单击tab,JSFiddle就会给我自动补全,对于这个`<input>`标签,我想让用户输入一些信息,并且依此更新title,
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<input type="text">
+
+		<p>{{ title }}</p>
+	</div>	
+
+这里我可以通过在`<input>`标签里添加一个Vue能够识别的命令来实现它,这个我们称之为 "指令(directive)",在这里我们需要的指令时v-on,
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<input type="text" v-on>
+
+		<p>{{ title }}</p>
+	</div>
+
+这是一个Vue能够识别的特殊指令,在这里请大家留意,id为app元素里面的这部分内容是被Vue所控制的.
+
+这个v-on指令是告诉Vue:"请监听某些事件",那么到底是哪一个事件?
+
+这里要传入一个参数,此参数要被传入指令,传参可以用冒号之后接上事件的名称,每当输入内容,就会触发的input事件
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<input type="text" v-on:input="">
+
+		<p>{{ title }}</p>
+	</div>	
+
+然后给它赋一个值,在双引号之间加上代码,此代码会在每次事件更新时执行.
+
+我想在这里调用一个方法,调用一个方法非常简单,可以在这直接调用changeTitle,当然这个方法还不存在,所以让我们来创建它.
+
+HTML:
+
+创建方法非常简单,就像data一样,Vue实例同样也有一个保留属性,即methods,别担心,你将学习所有的保留属性名称,和它们是怎么工作的,methods是一个对象,我么可以在这里设置所有在Vue实例和模板中使用的方法,既然上面用了changeTitle,这里就用这个名来当作函数名,当然,这是一个函数,
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World"
+		},
+		methods : {
+			changeTitle : function(){
+
+			}
+		}
+	})
+
+在这个函数中,我想改变title,这里需要注意一下,我不会写成data.something
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World"
+		},
+		methods : {
+			changeTitle : function(){
+				data.title = "learning vue.js"
+			}
+		}
+	})
+
+而是写this.title = 
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World"
+		},
+		methods : {
+			changeTitle : function(){
+				this.title = "learning vue.js"
+			}
+		} 
+	})
+
 ### 1.4 课程结构
 
 ### 1.5 课程说明
