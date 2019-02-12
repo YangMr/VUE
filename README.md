@@ -82,10 +82,81 @@
 现在我想添加一个内容为Hello World的段落:
 
 	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
 	<p>Hello World</p>
 
-这么"打招呼"看起来虽然很无趣,没有任何JavaScript参与,
+这么"打招呼"看起来很无趣,没有任何JavaScript参与.
 
+我们要用Vue来输出Hello World:
+
+HTML:
+	
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<p></p>
+
+为此,来到左下角的JavaScript编辑区域,有了上面的Vue引入,现在可以使用Vue中的一个核心对象,`Vue对象`,用new关键词和Vue来创建一个实例,这个实例就是个Vue实例,这样创建的Vue实例,其核心在于能让你处处使用Vue特性,创建的Vue实例有个最重要的功能,控制自己的模板即HTML中的代码,这些代码会最终渲染到页面上,要让该实例实现该功能,需传参至构造函数,参数是个对象,其中有个非常重要的属性,`el`属性,这是Vue的保留属性,Vue会识别,`el`属性接受一个字符串,该字符串定义了Vue实例能控制的HTML片段.
+
+JS:
+
+	new Vue({
+		el : ""
+	})
+
+这里的"控制"是指可以用Vue实例改变HTML内容,等下我们就会看到.
+
+这里我想控制<p>标签这部分,用<div>标签把它包起来,输入div#app,在按tab键,会自动补齐成id为app的<div>标签,把段落移入<div>标签,
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p></p>
+	</div>	
+
+现在可以通过app的id属性选择这个<div>元素,el的属性值写法类似CSS选择器,输入#app,就选择了样式id为app的元素,如果输入的是 .app,那就选择了样式类为app的第一个元素,现在我们就控制了这个div元素,也就是这个Vue实例的模板
+
+JS:
+
+	new Vue({
+		el : "#app"
+	});
+	
+
+要想有所输出,就需要数据,Vue有个专门的属性,`data`属性,也是个保留属性,它不是字符串,而是个对象,势力中需要的所有数据都存入其中
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+
+		}
+	});
+
+比如说,我们需要一个title属性,属性值我们随便写,比如Hello World
+	
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World"
+		}
+	})
+
+我想在模板中输出这个,之前我直接写死在HTML中,现在这个模板能被Vue控制了,只要在模板中简单添加特殊的Vue语法,双大括号,开始...,结尾...
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p>{{ title }}</p>
+	</div>
+	
+在内部添加title即可,Vue会自动在data对象中查找,刚说过,data是保留属性,在data对象中找到title属性,然后输出到HTML中,按住Ctrl + Enter运行查看页面结果
 
 ### 1.3 扩展这个VueJS应用
 
