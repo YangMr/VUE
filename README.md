@@ -69,11 +69,11 @@
 
 在这里我们使用JS Fiddle,它是个网页在线编辑器,只能开发非常简单的HTML CSS JavaScript项目,左上角是HTML编辑区域,在这里引入脚本,现在让我们输入script,键入tab,就会自动补齐成<script>标签,然后在<script>标签里面添加src属性,直接插入刚才复制的链接:
 
-`<script src="https://unpkg.com/vue@2.6.2/dist/vue.js"></script>`
+	<script src="https://unpkg.com/vue@2.6.2/dist/vue.js"></script>
 
 可以就保持这样,也可以删除版本信息:
 
-`<script src="https://unpkg.com/vue/dist/vue.js"></script>`
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 
 如果删除的话,从而自动获取最新版本,这样就成功的引入了vue,现在可以使用vue的所有特性.
 
@@ -81,9 +81,10 @@
 
 现在我想添加一个内容为Hello World的段落:
 
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 	<p>Hello World</p>
 
-
+这么"打招呼"看起来虽然很无趣,没有任何JavaScript参与,
 
 
 ### 1.3 扩展这个VueJS应用
