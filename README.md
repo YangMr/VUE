@@ -39,7 +39,7 @@
 
 #### 为什么要使用这个框架?
 
-**&emsp;接下来我们聊聊为什么要选择Vue这个框架,而不是像Angular/React等类似框架?**
+##### &emsp;接下来我们聊聊为什么要选择Vue这个框架,而不是像Angular/React等类似框架?
 
 &emsp;&emsp;首先,从体积来说,Vue非常精悍小巧,核心代码的压缩包版本只有16KB,16KB并不包括额外引入的路由插件,即使算上它,整个框架还是非常小,是个功能聚焦,直击要害的框架,但因为体积小它不仅加载快,运行时也非常快,某些基准测试显示,Vue的运行时甚至超过Angular/React,当然不同应用的运行时会有所差异,但可以说它真的很快,这也进一步增强了Vue响应迅速的体验.
 
@@ -52,6 +52,39 @@
 
 
 ### 1.2 实现第一个VueJS应用
+
+- 创建第一个Vue应用其实非常简单,先打开官网首页 ([https://vuejs.org/](https://vuejs.org/ "vue"))
+- 看到这个起步(GET STARTED)按钮,点击进入Vue官方文档,官方文档永远值得一看
+- 现在点击安装(Installation)
+
+#### Vue的安装方式?
+
+- 本地安装
+	- 可以直接下载Vue,后面我们会演示
+	- 或者像我现在一样,直接从CDN获取,引入到我们的服务器中,点击unpkg,然后直接复制url,项目中引入该链接,就能获取到Vue
+- 命令安装
+	- 后面课程,我们会使用复杂的(也就是命令安装),通过webpack配置来打包所有文件
+
+#### 在JS Fiddle上操作 或者 本地上操作
+
+在这里我们使用JS Fiddle,它是个网页在线编辑器,只能开发非常简单的HTML CSS JavaScript项目,左上角是HTML编辑区域,在这里引入脚本,现在让我们输入script,键入tab,就会自动补齐成<script>标签,然后在<script>标签里面添加src属性,直接插入刚才复制的链接:
+
+`<script src="https://unpkg.com/vue@2.6.2/dist/vue.js"></script>`
+
+可以就保持这样,也可以删除版本信息:
+
+`<script src="https://unpkg.com/vue/dist/vue.js"></script>`
+
+如果删除的话,从而自动获取最新版本,这样就成功的引入了vue,现在可以使用vue的所有特性.
+
+#### 创建第一个Vue应用
+
+现在我想添加一个内容为Hello World的段落:
+
+	<p>Hello World</p>
+
+
+
 
 ### 1.3 扩展这个VueJS应用
 
