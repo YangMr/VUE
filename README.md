@@ -256,6 +256,31 @@ JS:
 		} 
 	})
 
+this指代data对象,这看起来有一点奇怪,其实确实很奇怪,这是Vue在背后变的一些戏法,它自动的把所有data对象的属性,如title,代理到最顶层的Vue对象上,这就是为什么可以利用this来获取它,这个我们会在后面的课程讲到,现在最重要的是,你可以获得存储在data的所有属性,获取存储在methods的所有方法,你可以用this.name来访问它们,this.title能让我们访问这个的title.
+
+现在我想用 用户的输入值来赋值,此外,多亏了原生JavaScript,它为我们自动创建了一个event对象,这与Vue无关,而是和原生JavaScript以及DOM的工作方式有关系,我获取了这个event对象
+
+在本例中,event对象存储了target属性,即`<input>`标签,现在这个被JavaScript自动创建的event对象,被Vue自动的传入这个方法,那么我就可以获取它,命名为event,再一次强调,它是由JavaScript自动创建的,这里我可以 #  #直接写event,我们知道这个默认对象有一个target属性,并且我也知道这个target就是`<input>`标签,所以我们会有一个value属性存储用户输入的值.
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World"
+		},
+		methods : {
+			changeTitle : function(event){
+				this.title = event.target.value
+			}
+		}
+	})
+
+那么在这儿其实就完成了,再次Ctrl + Enter,就会看到输入框,如果输入一些东西,我们就看到title更新了.
+
+这就是我们的第一个Vue应用,真的很酷,接下来,你可以根据这节课的内容,尝试在你本机上建立一个一样的例子,下节课我们将跟深入的学习vue
+
+
 ### 1.4 课程结构
 
 ### 1.5 课程说明
