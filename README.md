@@ -482,7 +482,147 @@ JS:
 
 ### 3.2 用v-if来做条件渲染
 
-### 3.3 替代v-if语法
+今天我们来看一个全新的小项目,这个项目非常简单,
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p>你能看见我!</p>
+		<p>你也看见我了吗?</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+	
+
+Vue实例的data对象只有一个show属性,(模板中)`<div>`标签包含两个`<p>`标签,运行这段代码,可以看到这两句话:
+
+	你能看见我!
+	你也看见我了吗?
+
+有了这两段文字,我们要通过条件来控制它们显示和隐藏,或者说控制元素在DOM中的添加和移除,你可能在以前的项目中遇到过类似的需求.
+
+你不想总是显示模板中的全部内容,有时候只是想显示一条错误提示,比如像是表单里输入的错误内容等等,诸如此类的情况,只在特定情况下显示响应的信息或元素.
+
+Vue提供了简单的方式去实现这种需求,接下来我们就去学习这些方式.
+
+我要从v-if开始,这个指令可以写在任意元素上,
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="">你能看见我!</p>
+		<p>你也看见我了吗?</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+v-if 就像上面这样写,我们可以将它跟某些条件或属性绑定,只要这个条件或属性最终转换为true或者false,这是很关键的
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我!</p>
+		<p>你也看见我了吗?</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+我们可以在这里绑定show,就像上面示例一样.show的初始值是true,再在下面加个`<button>`标签,写上Switch或者其他文本,再添加一个click事件的监听器,将show设为它相反的状态,如下所示:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我!</p>
+		<p>你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+进行保存,你可以看到我点击按钮后发生了什么,你会看到"你能看见我!"这行话消失,(再次点击)它又出现了,如果我们审查这个元素,你会看到`<p>`标签,这时候点击 "Switch", `<p>`标签完全消失了,只剩下一行注释,说明这个位置曾存在什么,但消失不见了,它不是隐藏了,也不是透明状态,二是消失了,理解下面这点是非常重要的,v-if向DOM中添加元素或者将其移除,不是隐藏元素,如果传的值是false,或是表达式结果为false,元素就会完全从DOM中删除.
+
+v-if还可以"扩展",在下行再加个`<p>`标签,输出"现在你看到我了",这个标签加上v-else指令,v-else会和它前面最近的v-if关联,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我!</p>
+		<p v-else>现在你看到我了!</p>		
+		<p>你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+也就是上面这个,我们编译代码后,点击按钮,这两句话就会来回切换,v-if为false时,v-else条件就得以显示,这跟常规的if-else语句类似,这里不需要写为v-else-if,如果要对比多个条件,只需要在加一个v-if指令,v-if和v-else的组合是种快捷方式,用来轻松建立"如果-否则"这种关系,还要知道的时 v-if控制整个元素,包括它的子元素,如果在这个`<p>`标签里插一个元素,
+比如一个`<span>`标签,v-if的控制同样有效,代码如下所示:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我! <span>Hello</span></p>
+		<p v-else>现在你看到我了!</p>		
+		<p>你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+那么v-if的控制同样有效,所以整个元素都被删除了,v-if指令不会漏掉它的子元素,只要设定好了条件,元素整体就会被DOM添加或删除
 
 ### 3.4 不要用v-show解绑
 
