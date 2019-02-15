@@ -739,6 +739,97 @@ JS:
 
 ### 3.5 用v-for来渲染列表
 
+欢迎回来,现在又是一个崭新的JSFiddle环境,这次的代码非常简洁,但其实代码里我已经准备好了要用的数据,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Max",age : 27, color : "red" },
+				{name : "Anna", age : "unknow", color : "blue"}
+			]
+		}
+	})
+
+比如:ingredients 它是一个字符串数组,还有persons,也是数组,但却是对象数组.
+
+我为什么要这样做?因为这里我有些数组,看来我们要和列表打交道了,研究如何输出列表,假如要输出ingredients这个列表.
+
+在这里我们创建一个无序列表,其中列表项目为meat,fruit等,代码实例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<ul>
+			<li></li>
+		</ul>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Vue",age:20,color:"red"},
+				{name : "Yang",age:"unknow",color:"blue"}
+			]
+		}
+	})
+
+然而我不想写死在这里,首先因为它工作量很大,更重要的是我们的内容可能不是静态的,所以他可能会变,或者是可被用户修改,所以我们想用Vue输出这个列表,事实上这很容易,要想输出这样的列表,Vue里有v-for指令,最后一个我们还没有涉及到的指令,v-for允许我们遍历整个数组,像普通的for循环一样,复制v-for指令所在的元素,提取数组中的当前迭代元素,然后在模板里使用,我们看看如何做,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<ul>
+			<li v-for="ingredient in ingredients">
+				{{ingredients}}
+			</li>
+		</ul>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Vue",age:20,color:"red"},
+				{name : "Yang",age:"unknow",color:"blue"}
+			]
+		}
+	})
+
+这里我想循环ingredients,所以我就简单输入ingredient(这个是变量名),变量名随你取什么,然后是in ingredients,当然是指向data属性里的ingredients数组,只要属性是列表或可遍历的就可以,我取的ingredient这个变量名,Vue为我创建好这个变量,我可以在循环中使用,利用字符串插值输出具体内容,提示,你可以像使用别的属性一样使用它,所以也可以绑定到link的引用,在监听事件时,可以传参给函数调用,我可以用它就像用存放在Vue势力中别的属性一样,只不过我从来没有存储过它,但Vue为我动态创建了它,现在让我们运行一下,就能看到好看的列表了,效果示例如下:
+
+运行后的效果:
+
+	
+	meat
+	fruit
+	cookies
+
+仅仅几行代码,v-for指令就能遍历ingredients数组,输出到一个无序列表里面,
+
+
 ### 3.6 获取当前的下标
 
 ### 3.7 替代v-for语法
