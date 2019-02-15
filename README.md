@@ -866,6 +866,83 @@ JS:
 
 ### 3.7 替代v-for语法
 
+和v-if指令相似,如果我们不想输出列表呢,比如你想用`<h1>`标签,来包含输出的数据,后面用`<p>`标签来输出下标,你可以用`<template>`标签来循环,和之前一样,`<template>`标签不会被渲染出来,但如果我们给`<template>`标签加上v-for指令,就像这样,和之前v-if指令一样,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<ul>
+			<li v-for="(ingredient,i) in ingredients">
+				{{ingredients}} ({{i}})
+			</li>
+
+			<template v-for="">
+				<h1>{{ ingredient }}</h1>
+				<p>{{ index }}</p>
+			</template>
+		</ul>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Vue",age:20,color:"red"},
+				{name : "Yang",age:"unknow",color:"blue"}
+			]
+		}
+	})
+
+Vue就会渲染出`<template>`标签里的所有内容,和上面`<li>`标签一样,只是`<li>`里的内容在循环时被v-for直接替换了,所以可以直接拷贝这个`<li>`的v-for代码,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<ul>
+			<li v-for="(ingredient,i) in ingredients">
+				{{ingredients}} ({{i}})
+			</li>
+
+			<template v-for="(ingredient,index)">
+				<h1>{{ ingredient }}</h1>
+				<p>{{ index }}</p>
+			</template>
+		</ul>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Vue",age:20,color:"red"},
+				{name : "Yang",age:"unknow",color:"blue"}
+			]
+		}
+	})
+
+吧i改成index,因为`<template>`标签在循环时用的是index,最后我们运行一下,就能看到如下效果:
+
+效果示例:
+
+	meat
+	0
+	fruit
+	1
+	cookies
+	2
+
+这就是另一种v-for的写法,结合`<template>`标签来循环多个未嵌套元素.
+
 ### 3.9 循环一组对象
 
 ### 3.10 循环一组数字列表
