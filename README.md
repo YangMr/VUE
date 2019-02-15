@@ -624,6 +624,87 @@ JS:
 
 那么v-if的控制同样有效,所以整个元素都被删除了,v-if指令不会漏掉它的子元素,只要设定好了条件,元素整体就会被DOM添加或删除
 
+### 3.3 替代v-if语法
+
+这里还有一种方法,可以实现模块的添加和移除,在这添加一个`<template>`标签,这个时HTML5的标签,它在DOM中不会被渲染,也就是说`<template>`标签时看不到的,要是在`<template>`标签中,添加一个`<p>`标签,输入"在一个模板里面",代码如下所示:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我! <span>Hello</span></p>
+		<p v-else>现在你看到我了!</p>	
+		<template>
+			<p>在一个模板里面</p>
+		</template>	
+		<p>你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+再刷新渲染,但审查这个元素,你是看不到外层的`<template>`标签,没错吧,这就是`<template>`的作用,给`<template>`标签加上v-if指令后,我们也可以控制它的切换了,你可能会问这跟第一个版本有何不同,我们可以组合多个元素,比如在加个标题元素,输入"Heading",代码如下所示:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我! <span>Hello</span></p>
+		<p v-else>现在你看到我了!</p>	
+		<template>
+			<h1>Heading</h1>
+			<p>在一个模板里面</p>
+		</template>	
+		<p>你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+注意看,这两个元素并没有相互嵌套,v-if只能加在一个元素上,或者同时加在多个元素上,比如只给`<h1>`标签加上v-if,代码如下所示:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我! <span>Hello</span></p>
+		<p v-else>现在你看到我了!</p>	
+		<template>
+			<h1 v-if>Heading</h1>
+			<p>在一个模板里面</p>
+		</template>	
+		<p>你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+下面的`<p>`标签并不受它控制,因为`<p>`标签不再`<h1>`中,可以用最终不可见的`<template>`包裹住它们,把属于同一块的元素组合起来,再用v-if去控制,`<template>`可以用`<div>`替代,但`<div>`元素也许不是我们需要的,它会引入不必要的副作用,而`<template>`结合v-if,是个不错的选择,它可以组合多个需要同时显示或隐藏的元素,准确来说是元素的添加或移除,
+
 ### 3.4 不要用v-show解绑
 
 ### 3.5 用v-for来渲染列表
