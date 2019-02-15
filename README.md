@@ -707,6 +707,36 @@ JS:
 
 ### 3.4 不要用v-show解绑
 
+说到展示和隐藏,Vue确实也有v-if的选项,v-if完全移除或添加元素到DOM,只是删除或添加它,并不会隐藏它,如果你想隐藏它或者不想隐藏它,你可以用v-show来做到,代码实例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p v-if="show">你能看见我! <span>Hello</span></p>
+		<p v-else>现在你看到我了!</p>	
+		<template>
+			<h1 v-if>Heading</h1>
+			<p>在一个模板里面</p>
+		</template>	
+		<p v-show="show">你也看见我了吗?</p>
+		<button @click="show = !show">Switch</button>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			show : true
+		}
+	})
+
+它和v-if语法相同,只是名字不同,所以v-show代替v-if更好,但是要知道点击切换,删除它,现在查看元素 "你也看见我了吗" 文本附加有v-show属性,在右边观察这个元素,就是这里的 "你也看见我了吗" 文本,如果我点击switch,它仍在哪里,但是它有了新的样式,"display:none",这就是它们的不同,这里并没有移除元素,它只是使用CSS隐藏了,也许这就是期望的处理,获取你不想删除元素,出于某种原因,你想在DOM中保留它,这样做就可以,如果你确认你不想删除它,使用v-show仅仅隐藏它,而不从DOM中删除它.
+
+默认情况下是使用v-if,为什么呢?因为DOM当中的元素越少,应用的性能表现就越好,所以删除不需要的元素很有必要,但是在特殊情况下确实需要它,就使用v-show.
+
 ### 3.5 用v-for来渲染列表
 
 ### 3.6 获取当前的下标
