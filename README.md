@@ -829,8 +829,40 @@ JS:
 
 仅仅几行代码,v-for指令就能遍历ingredients数组,输出到一个无序列表里面,
 
-
 ### 3.6 获取当前的下标
+
+如果你不只是想要显示字符串,还想显示地址,也就是元素的下标,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<ul>
+			<li v-for="(ingredient,i) in ingredients">
+				{{ingredients}} ({{i}})
+			</li>
+		</ul>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Vue",age:20,color:"red"},
+				{name : "Yang",age:"unknow",color:"blue"}
+			]
+		}
+	})
+
+这里我们输出了ingredient,然后在括号里,这里没有语法,只是普通的文本,我们想在想要在括号里显示下标,那么在括号里面,使用双大括号,输出元素下标,变量命名为i,i还没有被定义,它既不是这个Vue实例的属性,也不是有效的遍历元素,但是我们可以让他有效.
+
+之前已经在这里定义了ingredient,作为在遍历过程中使用的变量名,现在可以修改语法,可以给它加上括号,不只是为了定义ingredient来遍历元素,也在这里定义了元素的下标,只需要在这里加个变量名并以逗号分隔,给它取名为i,因为在哪里已经用了i,双大括号了的i来自于v-for指令里面定义的i,所以这两个变量的命名完全取决于你,定义这两个变量名,然后用第一个,顺序非常重要,第一是遍历的元素,第二是元素的下标,如果我现在运行,你看我们的ingredients后紧跟着,ingredient的下标,再一次强调,这里的顺序很重要,括号里的第一个元素总是,这个元素在数组里的值,第二个元素,在这个实例中的i,它始终是这个元素在数组里的下表索引,
+在Vue中用循环动态的输出内容就是如此简单,
+
 
 ### 3.7 替代v-for语法
 
