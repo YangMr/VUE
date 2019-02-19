@@ -464,6 +464,39 @@ JS:
 
 ### 2.6 理解和使用指令
 
+那什么是指令呢?如果指令可以让我们完成这些事,那应该怎么去理解指令这个东西呢?
+
+指令基本上就是你放在代码中的一些指示,Vue为我们提供了一些指令,数量并不多,因为大部分事情差不多都被Vue搞定了,而且后面你还可以学习怎么写自定义指令,再回来讲指令,它就是一个指示,而这里这个v-bind指令会指示Vue,将一些东西和我的数据绑定,数据当然也包括所用函数,它们都存储于下面的Vue实例,这里我们用的是双大括号(来调用函数),在双大括号不适用时,就要使用指令.
+
+v-bind指令需要一些参数,一般用冒号(:)后加上参数的方式来传递,这样参数就会绑定到某个HTML属性上,这里就是这个链接的href属性,代码如下所示:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com"
+		},
+		methods : {
+			sayHello : function(){
+				return title;
+			}
+		}
+	})
+
+引号里就是你想要从Vue实例中绑定的东西,属性或者函数这些,在这里就是link属性,一般情况下你不能给HTML属性传递动态数据,有了Vue这些都是可以实现的了.
+
 ### 2.7 用v-once禁止二次渲染
 
 ### 2.8 如何输出基础的HTML
