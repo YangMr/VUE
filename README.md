@@ -591,6 +591,103 @@ JS:
 
 ### 2.8 如何输出基础的HTML
 
+根据上一节课的内容,我们还可以进行丰富,比如这里有个finishedLink属性,这个属性不像link,它不是个URL,而是一个完整的`<a>`标签,我们可以直接写HTML代码,示例代码如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com",
+			finishedLink : "<a href='https://www.baidu.com'>baidu</a>"
+		},
+		methods : {
+			sayHello : function(){
+				this.title = "Hello";
+				return title;
+			}
+		}
+	})
+
+就像这样,这个标签也是链接到baidu.com,当然也要记得,这不只是URL,而是一个完整的链接元素,在这里我们可以加个`<hr>`标签,然后是`<p>`标签,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+		<hr/>
+		<p>{{ finishedLink }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com",
+			finishedLink : "<a href='https://www.baidu.com'>baidu</a>"
+		},
+		methods : {
+			sayHello : function(){
+				this.title = "Hello";
+				return title;
+			}
+		}
+	})
+
+里面就输出finishedLink,链接到百度,如果现在刷新页面会怎么样?我们试试看,出来的是finishedLink的原始文本,我们看到的不是一个渲染好的链接,而是这样的文本格式的HTML代码,这是Vue的默认设置,这种设置很棒,因为这种设置保证了我们不会遭受跨站脚本攻击(XSS攻击),也就是说Vue默认会转义HTML代码,它不会将其渲染成HTML元素,而是输出为纯文本,一般情况下,最好这样做,不过如果你需要加载一些来源可靠的HTML代码,或者代码是你自己合成然后输出的,那你可能就想要输出HTML代码,而不是文本格式,比如博客文章中的编辑部分,这种情况你可以去掉大括号和插值语句,转而使用指令,把指令放在你想输出HTML代码的地方,这个指令就是v-html,这个指令里你可以传入属性的名称,其内容就是HTML代码,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+		<hr/>
+		<p v-html="finishedLink"></p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com",
+			finishedLink : "<a href='https://www.baidu.com'>baidu</a>"
+		},
+		methods : {
+			sayHello : function(){
+				this.title = "Hello";
+				return title;
+			}
+		}
+	})
+
+
+现在我在刷新页面的话,你就可以看到链接了,v-html会告诉Vue去渲染HTML代码而不是转义它,再强调一下,谨慎使用这个指令,它会把你暴露给XSS攻击,比如链接的内容可能是用户提交的,你是不能控制用户上传什么内容的,若确定内容安全,或是你自己合成的代码,那就可以放心使用这个指令,通过Vue直接加载HTML代码.
+
 ### 2.9 作业1问题: 输出数据到模板
 
 我们来练习使用模板语法输出数据,下面是我准备的几个习题,我快速的给大家过一遍题目,答案我们会在下一课程中给大家讲解.
