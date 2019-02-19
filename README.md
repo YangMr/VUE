@@ -499,6 +499,96 @@ JS:
 
 ### 2.7 用v-once禁止二次渲染
 
+我们再来丰富一下上一节课的应用,比如说我们在`<h1>`标签里要放一个title,这里我要输出title,它的值是Hello World,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com"
+		},
+		methods : {
+			sayHello : function(){
+				return title;
+			}
+		}
+	})
+
+在sayHello()中,我做了同样的事,只不过用的是函数,在这里函数里,如果我要将title的值改成Hello,像这样,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<h1>{{ title }}</h1>
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com"
+		},
+		methods : {
+			sayHello : function(){
+				this.title = "Hello";
+				return title;
+			}
+		}
+	})
+
+刷新页面后,我们可以看到两个Hello,因为当执行sayHello()的时候,我们覆写了title的值,改成了只有Hello,所以在两个地方都输出了Hello.
+
+如果我们想让title的值一直保持在初始值呢?不想让它的值像这里这样被覆写,我们可以通过一个指令来完成这件事,这个指令可以通过插值作用在HTML元素上,这个指令就是v-once,把它加到HTML元素中后,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<h1 v-once>{{ title }}</h1>
+		<p>
+			{{ sayHello() }} - <a v-bind:href="link">baidu</a>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World",
+			link : "https://www.baidu.com"
+		},
+		methods : {
+			sayHello : function(){
+				this.title = "Hello";
+				return title;
+			}
+		}
+	})
+
+这个标签中间的所有内容只会被渲染一次,之后就不能再改变,不会像刚才 title在后面被覆写了,刷新页面,我们看到的是Hello World,也就是初始值,它并不会被之后的覆写操作所修改,在你的应用中可能会需要这种特性,那用v-once就可以让内容保持在初始值,而不会在后面被覆写.
+
 ### 2.8 如何输出基础的HTML
 
 ### 2.9 作业1问题: 输出数据到模板
