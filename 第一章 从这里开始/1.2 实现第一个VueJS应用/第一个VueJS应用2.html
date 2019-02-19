@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--cdn引入-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!--本地引入-->
+    <!--<script src="vue.js"></script>-->
+</head>
+<body>
+
+    <div class="app">
+        <p>{{title}}</p>
+    </div>
+
+
+
+
+</body>
+</html>
+<script>
+    //使用vue   1. 实例化  2. 传参,参数一个对象
+   new Vue({
+       el: ".app",
+       data : {
+           title : "Hello world"
+       }
+   })
+
+</script>
