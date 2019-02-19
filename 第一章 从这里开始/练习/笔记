@@ -1,0 +1,10 @@
+v-text
+v-html
+v-on:事件名
+v-bind:属性
+v-show
+v-if
+v-else-if
+v-else
+v-for
+v-model
