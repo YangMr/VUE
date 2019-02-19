@@ -377,6 +377,38 @@ JS:
 
 ### 2.4 访问Vue实例里的数据
 
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<p>{{ sayHello() }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			title : "Hello World"
+		},
+		methods : {
+			sayHello : function(){
+				return title;
+			}
+		}
+	})
+
+
+这里需要特别注意,因为在Vue实例中如果我们想在函数中输出title,也就是说我们要返回title,而不是Hello,那样写是不行的,因为不像是在模板中我们可以直接访问所有的属性和方法,那是Vue给我们提供的便利,但在JavaSript代码中就不能这样了,不过我们还是由访问的方法,这里的title属性属于data这个对象,通常情况下,我们不能用this来调用title属性,因为this并不是指代data对象,幸亏Vue有一些神奇的能力,他会帮我们管理这些属性,当然这种方式也可以用来调用方法,在Vue的帮助下,只要使用this,在Vue实例中的任何地方我们就可以访问所有的属性和方法了.
+
+所以在上面代码示例当中,我们就可以通过this.title来调用data中的title属性.
+
+在这之后我们还会更加详细的讲解Vue实例.
+
+在这之后,Vue为我们提供了某种方式,可轻松访问属性,所以要记住这一点,尤其是模板语法中没有this,这里是有的,如果现在刷新一下就可以看到变化了,仍是显示Hello World,但这次是通过调用函数访问title属性来实现的,
+
 ### 2.5 属性绑定
 
 ### 2.6 理解和使用指令
@@ -943,17 +975,57 @@ JS:
 
 这就是另一种v-for的写法,结合`<template>`标签来循环多个未嵌套元素.
 
-### 3.9 循环一组对象
+### 3.8 循环一组对象
 
-### 3.10 循环一组数字列表
+除了循环单个元素组成的数组,还可以循环对象组成的数组,或者直接循环对象,接下来我来演示一下,因为之前的内容还占着位置,所以在`<template>`标签的前面,我来加入些新代码,上下各加一个`<hr>`水平线,方便和之前的内容区分,这里我想输出一个带有`<li>`列表项的`<ul>`的无序列表,和之前一样,用v-for来循环,现在我想循环渲染persons数组,所以可以用`person in persons`,然后就可以输出person了,它由我命名并且由Vue在循环中自动创建为变量,比如就输出person.name,代码示例如下:
 
-### 3.11 用v-for来跟踪对象
+HTML:
 
-### 3.12 作业5问题: 条件和列表
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
 
-### 3.13 作业5答案: 条件和列表
+	<div id="app">
+		<ul>
+			<li v-for="(ingredient,i) in ingredients">
+				{{ingredients}} ({{i}})
+			</li>
+			<hr/>
+			<ul>
+				<li v-for="person in persons">	{{ persons.name }}
+				</li>
+			</ul>
+			<hr/>
+			<template v-for="(ingredient,index)">
+				<h1>{{ ingredient }}</h1>
+				<p>{{ index }}</p>
+			</template>
+		</ul>
+	</div>
 
-### 3.14 本章总结
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			ingredients : ["meat","fruit","cookies"],
+			persons : [
+				{name : "Vue",age:20,color:"red"},
+				{name : "Yang",age:"unknow",color:"blue"}
+			]
+		}
+	})
+
+
+
+
+### 3.9 循环一组数字列表
+
+### 3.10 用v-for来跟踪对象
+
+### 3.11 作业5问题: 条件和列表
+
+### 3.12 作业5答案: 条件和列表
+
+### 3.13 本章总结
 
 ## 第4章 第一个实训项目-怪物猎人
 
