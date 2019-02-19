@@ -727,10 +727,58 @@ JS:
 	
 习题就到这里,下一课程我们会为大家讲解答案
 
-
 ### 2.10 作业1答案: 输出数据到模板
 
 ### 2.11 监听事件
+
+大家好,我们又回到了JSFiddle编辑器,我们再来看这个简单的Vue应用,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button>Click me</button>
+		<p>{{ counter }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0
+		}
+	})
+
+它有一个`<button>`标签和counter属性,counter已添加在data对象里,我要让这个按钮和counter属性关联起来,实现点击按钮counter随之递增的效果,我们已经学过如果实现这种"关联",现在我们需要知道这个过程发生了什么,我在这里加一个新指令v-on,如果说v-bind是在模板中绑定一些东西,从而将数据传入模板,那么v-on的功能则是相反的,这里的绑定更确切的说是监听,它可以接收来自模板的一些"东西",究竟接收什么呢?那就是事件,v-on同样接受参数,它的参数是事件的名称,这个事件就是我们要监听并使用的,比如我们可以在这监听click事件,不仅仅是click还可以是监听任何由这按钮产生的DOM事件,比如mouseenter,mouseleave,包括所有在这按钮上的原生事件,等号右边输入另外一个参数,在等号后面的一对引号里,输入鼠标点击时你想要执行的方法或者代码.
+
+我现在绑定一个方法,将其命名为increase,然后在methods里定义这个方法,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase">Click me</button>
+		<p>{{ counter }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0
+		},
+		methods : {
+			increase : function(){
+				this.counter++;
+			}
+		}
+	})
+
+这时候就可以访问到counter了,再使其递增1,这时候我点击这个按钮,你会发现这个数字也随之增加,我想这应该很简单,接下来我们要再深入了解和学习"事件",
 
 ### 2.12 从事件对象里获取事件数据
 
