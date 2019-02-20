@@ -881,6 +881,105 @@ JS:
 
 ### 2.13 传递你自己的事件参数
 
+如果我们要(给组件)传自定义参数,该怎么做呢?举个例子,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>Coordinates: {{ x }} / {{ y }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(){
+				this.counter++;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	})
+
+这里的counter的递增,每次自增1,如果想让它根据我们设定的步长来递增,这个还是比较容易的,在调用increase函数或者说设置这个引用时,还可以加上括号,再传入参数,比如2,这个参数2说明我想让counter每次递增2,传入2后,再回到下面的increase方法里来,只需要监听参数step,也就是把step参数写在这,把这里改成this.counter+=step,它就根据step的值递增,而不再是1,代码示例如下:
+
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase(2)">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>Coordinates: {{ x }} / {{ y }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(step){
+				this.counter+=step;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	})
+
+运行一下,当我们点击按钮,你可以看到counter每次都随之递增2,传递自定义参数就是如此简单,最后如果不仅要传递自定义参数,还要传递DOM生成的事件对象(给方法),这也同样简单,只需要再加一个参数,而这个参数标识的命名很重要,Vue会自动捕捉这个默认的事件参数,并赋值给一个可以在这使用的变量,写作`$event`,这是个"受保护"的变量,请不要改写它,并且确保不要写错了,这样写后,就能在方法里获取到这个事件对象了代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase(2,$event)">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>Coordinates: {{ x }} / {{ y }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(step){
+				this.counter+=step;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	})
+
+在increase方法里,可以很方便的同时使用自定义参数,同时还有由Vue捕捉并传给我们的事件对象参数,
+
 ### 2.14 用事件修饰符来修改事件
 
 ### 2.15 监听键盘事件
