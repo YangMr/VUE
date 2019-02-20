@@ -782,6 +782,103 @@ JS:
 
 ### 2.12 从事件对象里获取事件数据
 
+举个例子,关于事件的一个重要内容,是我们能监听的默认事件对象,这个事件对象是由JavaScript和DOM产生,它包含着事件的相关数据,如click事件包含了事件触发位置的坐标.
+
+如果我们想要获取事件数据,比如要输出事件数据,那么我可以在这里添加一个`<p>`标签,输入Coordinates(坐标),接着我要在这里输出(事件)坐标,在这里是X坐标,接下来是y坐标,当然特们还没有定义,接下来我们定义一下,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase">Click me</button>
+		<p>{{ counter }}</p>
+		<p>Coordinates: {{ x }} / {{ y }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(){
+				this.counter++;
+			}
+		}
+	})
+
+接下来,当鼠标移动到`<p>`标签上时,需要更新这两个值,在这块我们可以v-on:mousemove,然后执行方法updateCoordinates,然后在methods里面定义这个方法,示例代码如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>Coordinates: {{ x }} / {{ y }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(){
+				this.counter++;
+			},
+			updateCoordinates : function(){
+				
+			}
+		}
+	})
+
+想要获得事件的坐标,需要先访问到这个自动生成的事件对象,实际上,这个事件对象不仅是由DOM或者JavaScript自动创建,还能自动传递给v-on绑定的每个函数,而这是由Vue帮我们完成的,所以,在这我们可以很轻松的得到event对象,我们能够轻松的将事件对象传给这方法,再将event.clientX赋给this.x,把event.clientY赋给this.y,clientX和clientY属于事件对象自带的属性,它们和Vue是不相关的,我把方法名改成和上面绑定的方法名一致,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>Coordinates: {{ x }} / {{ y }}</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(){
+				this.counter++;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	})
+
+现在我把鼠标移动在这个元素上时,这两个座标也跟着改变.
+
+我们可以学到能监听鼠标点击以外的其他事件,另外非常重要的是,它展现了如何传递事件对象,并像例子里这样使用.
+
 ### 2.13 传递你自己的事件参数
 
 ### 2.14 用事件修饰符来修改事件

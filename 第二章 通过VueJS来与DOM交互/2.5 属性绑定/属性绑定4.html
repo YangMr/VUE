@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <button v-on:click="taobao">淘宝</button>
+        <button @click="jd">京东</button>
+        <button @click="bd">百度</button>
+        <p>
+            {{title}}
+            ---
+            <a :href="link">{{name}}</a>
+        </p>
+    </div>
+</body>
+</html>
+<script>
+    new Vue({
+        el : "#app",
+        data : {
+            name : "website name",
+            title : "Hello",
+            link : "https://www.baidu.com"
+        },
+        methods : {
+            taobao : function () {
+                this.name = "淘宝";
+                this.link = "https://www.taobao.com";
+            },
+            jd : function () {
+                this.name = "京东";
+                this.link = "https://www.jd.com";
+            },
+            bd : function () {
+                this.name = "百度";
+                this.link = "https://www.baidu.com"
+            }
+        }
+    })
+</script>
