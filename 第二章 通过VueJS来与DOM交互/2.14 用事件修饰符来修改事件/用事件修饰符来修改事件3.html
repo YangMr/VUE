@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <button v-on:click="increase(2,$event)">Click Me</button>
+    <p>{{counter}}</p>
+
+    <p v-on:mousemove="updateCoordinates">
+        Coordinates : {{ x }}/{{ y }}
+        ----
+        <span v-on:mousemove.stop="">hello</span>
+
+        <a v-on:click="test" href="https://www.baidu.com">百度</a>
+    </p>
+</div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            counter : 0,
+            x : 0,
+            y : 0
+        },
+        methods : {
+            increase : function (event,a) {
+                console.log(event)
+                // this.counter += event;
+            },
+            updateCoordinates : function (event) {
+                this.x = event.clientX;
+                this.y = event.clientY;
+            },
+            test : function (event) {
+                event.preventDefault();
+                alert("hello")
+            }
+
+        }
+    })
+
+</script>

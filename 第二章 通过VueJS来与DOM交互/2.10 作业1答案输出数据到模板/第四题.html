@@ -14,6 +14,15 @@
         <p>乘3的年龄: {{age * 3}}</p>
         <hr/>
         <p>随机数:{{random()}}</p>
+        <hr/>
+        <p>
+            <button @click="change">click</button>
+            <img v-bind:src="imgUrl" :width="w" :height="h" alt="">
+        </p>
+        <hr/>
+        <p>
+            <input type="text" :value="inner">
+        </p>
     </div>
 </body>
 </html>
@@ -22,12 +31,20 @@
     new Vue({
         el : "#app",
         data : {
+            inner : "请输入搜索的内容",
             name : "jack",
-            age : 28
+            age : 28,
+            w : "150",
+            h : "150",
+            imgUrl : "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1550644154858&di=f2e0741b6d06ccf80c24c9cfa84ce2ad&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201408%2F14%2F20140814120825_icRak.thumb.700_0.jpeg"
         },
         methods : {
             random : function () {
                 return Math.floor(Math.random());
+            },
+            change : function () {
+                this.w = 300;
+                this.h = 300;
             }
         }
     })

@@ -28,17 +28,18 @@
             link : "https://www.baidu.com"
         },
         methods : {
+            change : function(name,link){
+                this.name = name;
+                this.link = link;
+            },
             taobao : function () {
-                this.name = "淘宝";
-                this.link = "https://www.taobao.com";
+                this.change("淘宝","https://www.taobao.com");
             },
             jd : function () {
-                this.name = "京东";
-                this.link = "https://www.jd.com";
+                this.change("淘宝","https://www.taobao.com")
             },
             bd : function () {
-                this.name = "百度";
-                this.link = "https://www.baidu.com"
+                this.change("淘宝","https://www.taobao.com")
             }
         }
     })

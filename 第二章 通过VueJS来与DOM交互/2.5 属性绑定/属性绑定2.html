@@ -12,7 +12,7 @@
         <p>
             {{title}}
             ---
-            <a href="https://www.baidu.com">百度</a>
+            <a v-bind:href="link">百度</a>
         </p>
     </div>
 </body>
@@ -21,7 +21,8 @@
     new Vue({
         el : "#app",
         data : {
-            title : "Hello"
+            title : "Hello",
+            link : "https://www.baidu.com"
         }
     })
 </script>

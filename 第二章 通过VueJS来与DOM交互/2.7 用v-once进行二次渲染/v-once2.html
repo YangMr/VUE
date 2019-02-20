@@ -7,9 +7,10 @@
 </head>
 <body>
     <div id="app">
-        <p v-once>{{title}}</p>
-
-        <h1>{{sayHello()}}</h1>
+        <button @click="change">change</button>
+        <span v-once>{{name}}</span>
+        <hr/>
+        <strong>{{name}}</strong>
     </div>
 </body>
 </html>
@@ -18,12 +19,11 @@
     new Vue({
         el : "#app",
         data : {
-            title : "Hello World"
+            name : "jack"
         },
         methods : {
-            sayHello : function () {
-                this.title = "我想好好学习";
-                return this.title;
+            change : function () {
+                this.name = "rose";
             }
         }
     })

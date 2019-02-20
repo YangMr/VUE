@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <input type="text" v-model:value="message">
+        
+        <button @click="add">添加数据</button>
+
+        <button @click="del">删除数据</button>
+
+        <button @click="sel">查询数据</button>
+
+        <p>{{array}}</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data: {
+            array : [12,34,45,23,5],
+            message : "",
+            newArray : []
+        },
+        methods : {
+            add : function () {
+                this.array.push(parseInt(this.message));
+            },
+            del : function () {
+                this.array.pop()
+            },
+            sel : function () {
+                for(var i=0;i<this.array.length;i++){
+                    if(this.array[i] == this.message){
+                        this.newArray.push(parseInt(this.message))
+                    }
+                }
+                this.array = this.newArray;
+            }
+        }
+    })
+
+</script>

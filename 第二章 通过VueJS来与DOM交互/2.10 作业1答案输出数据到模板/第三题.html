@@ -12,6 +12,8 @@
         <p>年龄: {{age}}</p>
         <hr/>
         <p>乘3的年龄: {{age * 3}}</p>
+        <hr/>
+        <p>随机数:{{random()}}</p>
     </div>
 </body>
 </html>
@@ -22,6 +24,11 @@
         data : {
             name : "jack",
             age : 28
+        },
+        methods : {
+            random : function () {
+                return Math.floor(Math.random());
+            }
         }
     })
 

@@ -2,9 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="vue.js"></script>
 </head>
 <body>
-$END$
+    <div id="app">
+        <p>{{sayHello()}}</p>
+
+        <strong>{{showVa()}}</strong>
+    </div>
 </body>
 </html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            title : "Hello World"
+        },
+        methods : {
+            Va : function(){
+              return "123";
+            },
+            sayHello : function () {
+                return this.title
+            },
+            showVa : function () {
+                return this.Va();
+            }
+        }
+    })
+
+</script>

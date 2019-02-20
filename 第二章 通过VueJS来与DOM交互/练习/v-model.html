@@ -7,26 +7,22 @@
 </head>
 <body>
     <div id="app">
-        <ul>
-            <li v-html="change()"></li>
-        </ul>
+        <input type="text" v-model:value="message">
+        <button @click="test">查看message的值</button>
+        <p>{{message}}</p>
     </div>
 </body>
 </html>
 <script>
-
     new Vue({
         el : "#app",
-        data : {
-            arr : ["上衣","裤子","鞋子"],
-            inner : ""
+        data: {
+            message : "hello"
         },
         methods : {
-            change : function () {
-                this.inner = "<a href='https://www.baidu.com'>"+this.arr[0]+"</a>";
-                return this.inner;
+            test : function () {
+                alert(this.message)
             }
         }
     })
-
 </script>

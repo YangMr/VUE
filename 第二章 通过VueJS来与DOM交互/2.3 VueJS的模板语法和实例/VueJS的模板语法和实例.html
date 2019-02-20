@@ -2,9 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="vue.js"></script>
 </head>
 <body>
-$END$
+    <div id="app">
+        <p>{{title}}</p>
+        <p>{{demo}}</p>
+    </div>
 </body>
 </html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            title : "Hello World",
+            demo : "123"
+        }
+    })
+
+</script>

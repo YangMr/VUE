@@ -2,9 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="vue.js"></script>
+    <style>
+
+        #box{
+            width:200px;
+            height:200px;
+            border:2px solid #ccc;
+            margin:100px auto;
+            text-align: center;
+            line-height: 200px;
+            background: red;
+            color:#fff;
+        }
+
+    </style>
 </head>
 <body>
-$END$
+    <div id="app">
+        <button v-on:click="changeW">变宽</button>
+        <button>变高</button>
+        <button>变色</button>
+
+        <div id="box">{{message}}</div>
+    </div>
+
 </body>
 </html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            message : "hello"
+        },
+        methods : {
+            //变宽
+            bW : function (element,value) {
+                element.style.width = value;
+            },
+            //变高
+            bH : function (element,value) {
+                element.style.height = value;
+            },
+            changeW : function () {
+                this.bW(box,"500px");
+                this.bH(box,"500px");
+                this.message = "World"
+            }
+        }
+    })
+
+</script>

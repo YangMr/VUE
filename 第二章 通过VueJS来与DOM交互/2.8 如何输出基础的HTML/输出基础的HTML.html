@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
-$END$
+<div id="app">
+    <h1 v-once>{{ title }}</h1>
+    <p>
+        {{ sayHello() }}
+        ----
+        <a v-bind:href="link">baidu</a>
+    </p>
+    <p v-html="finishedLink"></p>
+</div>
 </body>
 </html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            title : "Hello World",
+            link : "https://www.baidu.com",
+            finishedLink : "<a href='https://www.baidu.com'>百度</a>"
+        },
+        methods : {
+            sayHello : function(){
+                this.title = "Hello";
+                return this.title;
+            }
+        }
+    })
+
+</script>

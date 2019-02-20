@@ -2,9 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
 </head>
 <body>
-$END$
+    <div id="app">
+
+        <p><a :href="f_link()">京东</a></p>
+
+    </div>
 </body>
 </html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            link : "https://www.jd.com"
+        },
+        methods : {
+            f_link : function () {
+                return this.link;
+            }
+        }
+    })
+
+</script>

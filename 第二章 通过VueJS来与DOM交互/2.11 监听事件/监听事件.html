@@ -7,9 +7,8 @@
 </head>
 <body>
     <div id="app">
-        <ul>
-            <li v-html="change()"></li>
-        </ul>
+        <button v-on:click="increase">Click Me</button>
+        <p>{{counter}}</p>
     </div>
 </body>
 </html>
@@ -18,13 +17,11 @@
     new Vue({
         el : "#app",
         data : {
-            arr : ["上衣","裤子","鞋子"],
-            inner : ""
+            counter : 0
         },
         methods : {
-            change : function () {
-                this.inner = "<a href='https://www.baidu.com'>"+this.arr[0]+"</a>";
-                return this.inner;
+            increase : function () {
+                this.counter++;
             }
         }
     })
