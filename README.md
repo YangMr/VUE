@@ -982,6 +982,165 @@ JS:
 
 ### 2.14 用事件修饰符来修改事件
 
+处理事件时,我们都会遇到一些问题,比如在复用应用时会遇到的一些问题,学了Vue,你会发现这些问题很容易就可以解决,但这些问题都有那些呢?
+
+我们先强化一下上一节课的程序,先将后面这段移到下一行,然后把`</p>`标签再移到下一行,现在我想在这两行间加一个DEAD SPOT(无效点),那在这里输入`<span>`,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase(2,$event)">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>
+			Coordinates: {{ x }} / {{ y }}
+			---
+			<span>DEAD SPOT</span>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(step){
+				this.counter+=step;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	}) 
+
+当我把鼠标悬停在这个元素上时,停止对"coordinates"的更新.
+
+当然如果现在保存的话,它还是会更新,因为`<span>`是这个`<p>`标签的一部分,而`<p>`标签是在监听鼠标移动事件的,现在我可以在这创建一个新事件,同样也把它命名为mousemove,但不执行任何动作,为了实现这个功能,可以在这加一个函数,函数名为"dummy",接下来我在methods里面创建"dummy"这个函数,我想通过这个函数得到一个事件,也就是自动传递给函数的这个事件,然后调用stopPropagation()函数,确保事件不会传播给绑定有这个属性的元素,也就是上面span这段,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase(2,$event)">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>
+			Coordinates: {{ x }} / {{ y }}
+			---
+			<span v-on:mousemove="dummy">DEAD SPOT</span>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(step){
+				this.counter+=step;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			},
+			dummy : function(event){
+				event.stopPropagation()
+			}
+		}
+	}) 
+
+运行一下程序,你会看到当鼠标移动到DEAT SPOT区域时,坐标就不更新了,因为我们阻止了事件的传播,也就是说这个事件已交由内部元素处理了,这个事件处理程序,不让事件传播到有这个属性的元素上,我们就可以这样做.
+
+但还有更简单的做法,我们可以把methods里面的"dummy"移除,把事件执行的方法名也删掉,不执行任何代码,转而使用所谓的修饰符,也叫做事件修饰符,它可以用来修饰这个事件,这就是这个名称的由来,我可以在这个事件名后加一个 "." 来添加修饰符,把它当作参数传送给v-on指令,在这我打算用stop来替代stopPropagation(),代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase(2,$event)">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>
+			Coordinates: {{ x }} / {{ y }}
+			---
+			<span v-on:mousemove.stop="">DEAD SPOT</span>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(step){
+				this.counter+=step;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	}) 
+
+运行一下,我们可以看到这边的数值就像刚才那样停止了,只是这里没有执行任何函数,因为Vue帮我们完成了这些事,大概就是有这么一个中间函数,架设在我自己的函数,这个例子中就是没有函数,和获得的或者提交的事件之间
+,这时Vue会执行这个函数,在这里就是事件的传播被阻止了.
+
+Vue给我们还提供了一些其他的修饰符,其中preventDefault是表达阻止意思的最重要的修饰符之一,
+所以用stop和prevent修饰符来执行这个函数,也就是处理方法时两种常用的方法,这些也是可以用的,就像这的 ".stop",你也可以改或做一点小改动,比如在这后面,代码示例如下:
+
+HTML:
+
+	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+	<div id="app">
+		<button v-on:click="increase(2,$event)">Click me</button>
+		<p>{{ counter }}</p>
+		<p v-on:mousemove='updateCoordinates'>
+			Coordinates: {{ x }} / {{ y }}
+			---
+			<span v-on:mousemove.stop.prevent="">DEAD SPOT</span>
+		</p>
+	</div>
+
+JS:
+
+	new Vue({
+		el : "#app",
+		data : {
+			counter : 0,
+			x : 0,
+			y : 0
+		},
+		methods : {
+			increase : function(step){
+				this.counter+=step;
+			},
+			updateCoordinates : function(event){
+				this.x = event.clientX;
+				this.y = event.clientY;
+			}
+		}
+	}) 
+
+虽然起不了什么作用,但是你可以加上它们或者做一些改动.
+
 ### 2.15 监听键盘事件
 
 ### 2.16 作业2问题: 事件
