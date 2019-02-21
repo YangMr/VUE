@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .p1{
+            width:200px;
+            height:200px;
+            background : red;
+        }
+        .p2{
+            width:200px;
+            height:200px;
+            background : yellow;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="hide">让p2隐藏</button>
+        <p class="p1">你能看见我吗?</p>
+        <p class="p2" v-if="flag">你看不见我</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            flag : true
+        },
+        methods : {
+            hide : function(){
+                this.flag = false
+            }
+        }
+    })
+
+</script>

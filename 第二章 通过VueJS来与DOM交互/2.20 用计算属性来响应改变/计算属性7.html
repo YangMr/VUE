@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+
+        <button @click="counter++">Increase</button>
+        <button @click="counter--">Decorease</button>
+        <button @click="secondCounter++">Counter Second</button>
+        <p>Counter : {{counter}}</p>
+        <p>Counter Second: {{secondCounter}}</p>
+        <p>Result : {{result()}}</p>
+        <p>Output : {{output}}</p>
+    </div>
+
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            counter : 0,
+            secondCounter : 0
+        },
+        computed : {
+            output : function () {
+                console.log("只有调用的时候才会渲染")
+                return this.counter > 5 ? "大于5" : "小于5";
+            }
+        },
+        methods : {
+            result : function () {
+                console.log("只要页面渲染就会调用result")
+                return this.counter > 5 ? "大于5" : "小于5"
+            }
+        }
+    })
+
+</script>

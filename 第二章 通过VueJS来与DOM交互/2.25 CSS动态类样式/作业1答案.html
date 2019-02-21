@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+
+        #effect{
+            width:100px;
+            height:100px;
+            border:1px solid #000;
+        }
+
+        .highligth{
+            background-color:red;
+            width:200px !important;
+        }
+        .shrink{
+            background-color:gray;
+            width:50px !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="exercise">
+
+        <div>
+            <button @click="startEffect">startEffect</button>
+            <div id="effect" v-bind:class="effectClasses"></div>
+        </div>
+
+    </div>
+
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#exercise",
+        data : {
+            effectClasses : {
+                highligth : false,
+                shrink : true
+            }
+        },
+        methods : {
+            startEffect : function(){
+                var vm = this;
+                setInterval(function(){
+                    vm.effectClasses.highligth = !vm.effectClasses.highligth;
+                    vm.effectClasses.shrink = !vm.effectClasses.shrink;
+                },1000);
+            }
+        }
+    })
+
+</script>

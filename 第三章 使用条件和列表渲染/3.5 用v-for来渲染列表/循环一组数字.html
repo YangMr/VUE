@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <a href="#" v-for="item in 100">baidu <br/></a>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            persons : [
+    			{name : "Vue",age:20,color:"red"},
+    			{name : "Yang",age:"unknow",color:"blue"}
+		    ]
+        },
+        methods : {
+
+        }
+    })
+
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="vData">
+        <button @click="add">Add</button>
+        <ul>
+            <li v-for="(item,i) in ingredients">{{item}}-{{i}}</li>
+        </ul>
+
+        <template v-for="(item,i) in ingredients">
+            <i v-html="item"></i>
+            <p>{{i}}</p>
+        </template>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            vData : "",
+            ingredients : ["<strong>meat</strong>","fruit","cookies","hello"]
+        },
+        methods : {
+            add : function () {
+                this.ingredients.push(this.vData);
+                this.vData = "";
+            }
+        }
+    })
+
+</script>

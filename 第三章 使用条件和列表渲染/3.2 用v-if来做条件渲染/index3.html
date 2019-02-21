@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .p1{
+            width:200px;
+            height:200px;
+            background : red;
+        }
+        .p2{
+            width:200px;
+            height:200px;
+            background : yellow;
+        }
+        .p3{
+            width:200px;
+            height:200px;
+            background : purple;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="toggle">{{btnName}}</button>
+        <p v-if="flag">1 <span>hello</span></p>
+        <p v-else>2</p>
+        <p>3</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            btnName : "隐藏",
+            flag : false,
+            counter : 0,
+            num : 8
+        },
+        methods : {
+            toggle : function(){
+                this.flag = !this.flag;
+                this.btnName = this.flag == true ? "隐藏" : "显示";
+            }
+        }
+    })
+
+</script>

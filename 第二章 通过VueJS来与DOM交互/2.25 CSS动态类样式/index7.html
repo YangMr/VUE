@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+
+        .demo{
+            width:100px;
+            height:100px;
+            background-color:gray;
+            display:inline-block;
+            margin:10px;
+        }
+
+        .red{
+            background-color:red;
+        }
+        .green {
+            background-color:green;
+        }
+        .blue{
+            background-color:blue;
+        }
+        .w{
+            width:400px;
+        }
+        .h{
+            height:200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="demo" :class="myClassName" ></div>
+        <div class="demo"  ></div>
+        <div class="demo" :class="color"></div>
+
+        <hr/>
+
+        <input type="text" v-model="color">
+
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            flag : false,
+            color : "gray"
+        },
+        computed : {
+            myClassName : function () {
+                return {
+                    red : true,
+                    w : true,
+                    h : true
+                }
+            }
+        },
+        methods : {
+            test : function () {
+                this.flag = true;
+            }
+        }
+    })
+
+</script>

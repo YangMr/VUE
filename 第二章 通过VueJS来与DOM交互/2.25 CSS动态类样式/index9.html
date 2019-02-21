@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        .max{
+            width:400px;
+            height:50px;
+            background: gray;
+        }
+        .min{
+            width:300px;
+            height:50px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+
+        <div class="max">
+            <div class="min" v-bind:style="{width:w + '%'}"></div>
+        </div>
+
+        <button @click="test">攻击</button>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            w : 100
+        },
+        computed : {
+
+        },
+        methods : {
+            test : function () {
+                this.w--;
+            }
+        }
+    })
+
+</script>

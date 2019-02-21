@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <button @click="increase">Increase</button>
+        <button @click="decorease">Decorease</button>
+        <p>Counter : {{counter}}</p>
+        <p>Result : {{result}}</p>
+    </div>
+
+</body>
+</html>
+<script>
+    new Vue({
+        el : "#app",
+        data : {
+            counter:0,
+            result : ""
+        },
+        methods : {
+            increase : function(){
+                this.counter++;
+                this.result = this.counter > 5 ? "Greater 5" : "Smaller than 5"
+            },
+            decorease : function(){
+                this.counter--;
+                this.result = this.counter > 5 ? "Greater 5" : "Smaller than 5"
+            }
+        }
+    })
+</script>
