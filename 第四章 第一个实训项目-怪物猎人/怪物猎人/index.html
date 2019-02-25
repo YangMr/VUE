@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/foundation.min.css" type="text/css">
+    <link rel="stylesheet" href="css/app.css" type="text/css">
+</head>
+<body>
+
+<div id="app">
+    <!-- 血量值 -->
+    <section class="row">
+        <div class="small-6 columns">
+            <h1 class="text-center">YOU</h1>
+            <div class="healthbar">
+                <div
+                        class="healthbar text-center"
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{width:playerHealth + '%'}"
+                        >
+                        {{playerHealth}}
+                </div>
+            </div>
+        </div>
+        <div class="small-6 columns">
+            <h1 class="text-center">MONSTER</h1>
+            <div class="healthbar">
+                <div
+                        class="healthbar text-center"
+                        style="background-color: green; margin: 0; color: white;"
+                        :style="{width:monsterHealth + '%'}"
+                        >
+                        {{monsterHealth}}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 开始新的游戏按钮 -->
+    <section class="row controls" v-if="!gameRuning">
+        <div class="small-12 columns">
+            <button id="start-game" @click="startGame">START NEW GAME</button>
+        </div>
+    </section>
+
+    <!-- 开始游戏之后的技能按钮 -->
+    <section class="row controls" v-else>
+        <div class="small-12 columns">
+            <button id="attack" @click="attack">ATTACK</button>
+            <button id="special-attack" @click="specialAttack">SPECIAL ATTACK</button>
+            <button id="heal" @click="heal">HEAL</button>
+            <button id="give-up" @click="giveUp">GIVE UP</button>
+        </div>
+    </section>
+
+    <!-- 输出攻击伤害的日志 -->
+    <section class="row log" v-if="truns.length > 0">
+        <div class="small-12 columns">
+            <ul>
+                <li
+                    v-for="item in truns"
+                    :class="{'player-turn': item.isPlayer,'monster-turn':!item.isPlayer}"
+                    >
+                    {{item.text}}
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<script src="vue.js"></script>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            truns : [],
+            playerHealth: 100,    //玩家的血量值
+            monsterHealth: 100,    //怪兽的血量值
+            gameRuning : false     //设置游戏运行的状态,默认为没有开始游戏
+        },
+        methods : {
+            //开始游戏方法
+            startGame : function(){
+                this.gameRuning = true;
+                this.monsterHealth = 100;
+                this.playerHealth = 100;
+                this.truns = [];
+            },
+            //放弃游戏方法
+            giveUp : function(){
+                this.gameRuning = false;
+                this.monsterHealth = 100;
+                this.playerHealth = 100;
+                this.truns = [];
+            },
+            //随机伤害值的方法
+            calculateDamage: function(min, max) {
+                return Math.max(Math.floor(Math.random() * max) + 1, min);
+            },
+            //胜利之后的开始新游戏方法
+            checkWin : function(){
+                if(this.monsterHealth <= 0){
+                    if(confirm("我胜利了,是否开始新的游戏?")){
+                        this.startGame();
+                    }else{
+                        this.gameRuning = false;
+                    }
+                    this.playerHealth = 100;
+                    this.monsterHealth = 100;
+                    return true;
+                }
+                if(this.playerHealth <=0){
+                    if(confirm("我失败了,是否开始新的游戏?")){
+                        this.startGame();
+                    }else{
+                        this.gameRuning = false;
+                    }
+                    this.truns = [];
+                    this.playerHealth = 100;
+                    this.monsterHealth = 100;
+                    return true;
+                }
+            },
+            //怪兽攻击玩家的方法
+            monsterAttacks :function(){
+                var damage = this.calculateDamage(5, 12);
+                this.playerHealth -= damage;
+                this.truns.unshift({
+                    isPlayer : false,
+                    text : "怪兽对玩家造成了" + damage + "伤害"
+                })
+            },
+            //普通攻击的方法
+            attack : function(){
+                var damage = this.calculateDamage(3,10);  //随机的伤害值
+                this.monsterHealth -=  damage;
+                this.monsterAttacks();  //调用怪兽攻击玩家方法
+                this.truns.unshift({
+                    isPlayer : true,
+                    text : "玩家对怪兽造成了" + damage + "伤害"
+                })
+                if(this.checkWin()){
+                    return;
+                }
+            },
+            //特殊攻击的方法
+            specialAttack : function(){
+                 //玩家攻击怪兽的伤害值
+                var damage = this.calculateDamage(10,20);
+                this.monsterHealth -= damage;
+                //调用怪兽攻击玩家的方法
+                this.monsterAttacks();
+                this.truns.unshift({
+                    isPlayer : true,
+                    text : "玩家对怪兽造成了" + damage + "特殊伤害"
+                })
+                //调用失败或者胜利之后的状态方法
+                if(this.checkWin()){
+                    reutrn;
+                }
+            },
+            //治疗玩家(恢复血量)的方法
+            heal : function(){
+                if(this.playerHealth <= 90){
+                    var damage = this.calculateDamage(8,16);
+                    this.playerHealth += damage;
+                    this.truns.unshift({
+                        isPlayer : true,
+                        text : "玩家恢复了" + damage + "血量"
+                    })
+                }else{
+                    this.playerHealth = 100;
+                }
+
+            }
+        }
+    })
+
+</script>

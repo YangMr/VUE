@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+
+        <p ref="myP">{{title}}</p>
+
+    </div>
+
+    <div id="app1">
+        <p>{{title}}</p>
+    </div>
+</body>
+</html>
+<script>
+
+    var vm1 = new Vue({
+        el : "#app",
+        data : {
+            title : "hello world"
+        }
+    });
+    vm1.$refs.myP.innerText = "我想好好学习";
+
+    var oP = vm1.$refs.myP;
+    oP.onclick = function(){
+        alert(this.innerHTML = "<strong>hello</strong>")
+    }
+
+    console.log(vm1.$refs.myP)
+
+</script>

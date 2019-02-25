@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <my-p></my-p>
+
+    <my-p></my-p>
+
+    <my-p></my-p>
+
+    <my-p></my-p>
+</div>
+
+</body>
+</html>
+<script>
+    var obj = {
+        title : "123"
+    }
+    //组件全局注册
+    Vue.component("my-p",{
+        data : function(){
+            return {
+                title : "123"
+            }
+        },
+        methods : {
+            test : function(){
+                alert("hello")
+            }
+        },
+        template : `<p @click="test">{{title}}</p>`
+    })
+    new Vue({
+        el : "#app",
+        data : {
+            title : "456"
+        }
+    })
+
+</script>

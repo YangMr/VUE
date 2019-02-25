@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p>内容一: {{contentOne}}</p>
+        <p>内容二: {{contentTwo}}</p>
+        <button @click="change">test</button>
+        <h1>{{demo}}</h1>
+
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : function(){
+            return {
+                contentOne : "Hello",
+                contentTwo : "World"
+            }
+        },
+        computed : {
+            output : function(){
+                return this.contentTwo;
+            }
+        },
+        methods : {
+            change : function(){
+                this.demo("asd")
+            }
+        },
+        watch : {
+            demo : function(val){
+                this.contentOne = val + "" + this.contentTwo
+            }
+        }
+    })
+
+</script>

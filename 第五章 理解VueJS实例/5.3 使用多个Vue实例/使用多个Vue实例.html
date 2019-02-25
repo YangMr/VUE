@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+
+    <div id="app">
+        <h1>{{title}}</h1>
+        <button @click="test">test</button>
+    </div>
+
+
+
+    <div id="app2">
+        <h1>{{title}}</h1>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data : {
+            title : "欢迎您回来"
+        },
+        methods : {
+            test : function(){
+                alert(this.title)
+            }
+        }
+    });
+
+
+    new Vue({
+        el : "#app2",
+        data : {
+            title : "用户名"
+        },
+        methods : {
+            change : function(){
+                this.title = "123"
+            }
+        }
+    })
+
+</script>

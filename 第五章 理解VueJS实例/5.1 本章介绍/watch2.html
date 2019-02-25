@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- <p>内容一: {{contentOne}}</p>
+        <p>内容二: {{contentTwo}}</p>
+        <button @click="change">test</button>
+        <h1>{{demo}}</h1> -->
+    <button @click="change">test</button>
+        <p>{{fullName}}</p>
+    </div>
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app",
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+            fullName: 'Foo Bar'
+      },
+      watch: {
+        firstName: function (newValue,oldValue) {
+         console.log("点击之后的值是:" + newValue + "点击之前的值:"+oldValue)
+          this.fullName = newValue + ' ' + this.lastName
+        },
+        lastName: function (val) {
+          this.fullName = this.firstName + ' ' + val
+        }
+    },
+    methods : {
+        change : function () {
+            this.firstName = "123"
+            this.lastName = "456"
+        }
+    }
+})
+
+</script>
