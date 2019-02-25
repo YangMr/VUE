@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <vue-p></vue-p>
+        <hr/>
+        <vue-p></vue-p>
+        <hr/>
+        <vue-p></vue-p>
+    </div>
+
+
+</body>
+</html>
+<script>
+
+
+    let cmp={
+        template : `<p>ServerStatus : {{status}} (<button @click="changeStatus">change</button>)</p>`,
+        data : function () {
+            return {
+                status : "circle"
+            };
+        },
+        methods : {
+            changeStatus : function () {
+                this.status = "Normal";
+            }
+        }
+    };
+    new Vue({
+        el : "#app",
+        data : {
+            status : "circle"
+        },
+        components : {
+            "vue-p" : cmp
+        }
+    })
+
+</script>
