@@ -1,18 +1,17 @@
 <template>
   <div id="app">
-      <list></list>
-      <hr>
-      <Home></Home>
+     
+
+      <Footer></Footer>
   </div>
 </template>
 
 <script>
-import Home from './compoment/Home.vue'
+import Footer from './compoment/Footer.vue'
 export default {
     //组件的局部注册
     components : {
-         // "Home" : Home
-         Home
+        "Footer" : Footer
     }
 }
 </script>
@@ -24,7 +23,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-
 }
 
 h1, h2 {

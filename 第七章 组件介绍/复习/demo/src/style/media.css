@@ -1,0 +1,43 @@
+@charset "utf-8"; 
+/*当页面大于1200px 时，大屏幕，主要是PC 端*/
+@media (min-width:1200px){
+	
+	
+}
+/*在992 和1199 像素之间的屏幕里，中等屏幕，分辨率低的PC*/
+@media (min-width:992px) and (max-width:1199px){
+	
+
+	
+		
+}
+/*在768 和991 像素之间的屏幕里，小屏幕，主要是PAD*/
+@media (min-width:768px) and (max-width:991px){
+	#pagenavi a{width:12px;height:12px;}
+	.header_h3{ height:50px; line-height:50px; font-size:18px;}
+	
+		
+}
+/*在480 和767 像素之间的屏幕里，超小屏幕，主要是手机*/
+@media (min-width:480px) and (max-width:767px){
+	#pagenavi a{width:10px;height:10px;}
+	.header_h3{ height:45px; line-height:45px; font-size:16px;}
+	.lwCon a{ font-size:11px;}
+	
+	
+
+	
+	
+	
+}
+/*在小于480 像素的屏幕，微小屏幕，更低分辨率的手机*/
+@media (max-width:479px){
+	#pagenavi a{width:10px;height:10px;}
+	.header_h3{ height:40px; line-height:40px; font-size:14px;}
+	.goods_dy{ width:45%;}
+	.lwCon a{ font-size:11px;}
+	
+	
+}
+	
+	

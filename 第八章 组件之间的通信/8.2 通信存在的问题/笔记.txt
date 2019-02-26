@@ -1,0 +1,26 @@
+父组件给子组件传递数据:
+
+    User.vue
+        导入detail:
+        传输:    <detail :myName="name"></detail>
+
+            data:function(){
+                return {
+                    name : "123"
+                }
+            }
+    子组件detail:
+
+        接受数据:
+            props : ["myName"]
+
+
+子组件给父组件进行数据传递:
+
+    this.$emit("自己定义的事件名称","传递的数据")
+
+父组件接受子组件传递过来的数据:
+
+    <detail @自己定义的事件名称="name = $event" :myName="name"></detail>
+
+    $event 指的是$emit第二个参数,这个第二个参数就是传递过来的数据

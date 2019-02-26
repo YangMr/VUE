@@ -1,0 +1,200 @@
+@charset "utf-8";
+/* CSS Document */
+/*首页*/
+.content{ min-width:320px; max-width:640px; margin-left:auto; margin-right:auto; padding-bottom:90px;}
+.content a:hover{ text-decoration:none;}
+.header_h3{ height:55px; line-height:55px; border-bottom:#DCDCDC solid 1px; background-color:#F4F4F4;}
+.out_a{ color:#565656; border-right:#DCDCDC solid 1px;}
+
+#wrapper{ overflow:hidden; position:relative;}
+#pagenavi{position:absolute;left:0;bottom:10px;text-align:center;width:100%;}
+#pagenavi a{width:14px;height:14px;line-height:99em;background:#b5b5b5;-webkit-border-radius:50%;-moz-border-radius:50%;border-radius:50%;margin:0 4px;overflow:hidden;
+cursor:pointer;display:inline-block;*display:inline;*zoom:1;}
+#pagenavi a.active{background:#C80002;}
+
+.pro_class{ background-color:#eee; float:left; width:25%; } 
+.icon_a{ display:block; font-size:14px; line-height:16px; outline-style:none; padding:10px 0 5px; text-align:center; color:#303537; }
+.icon_a:hover{ text-decoration:none; color:#f60;}
+.icon_a span{ background-position:50% 50%; background-repeat:no-repeat; background-size:auto 32px;/*定义背景图片尺寸宽、高*/ display:block; height:36px; margin:0 auto 5px; }
+.faa{ background-image:url(../images/btn_user_1.png);}
+.fab{ background-image:url(../images/btn_user_2.png);}
+.fac{ background-image:url(../images/btn_user_3.png);}
+.fad{ background-image:url(../images/btn_user_4.png);}
+
+.goods{ background-color:#eee; padding-left:1.5%;}
+.goods_dy{ background-color:#f9f9f9;  border-radius:5px; box-shadow:0 1px 3px rgba(0, 0, 0, 0.25); width:30%; margin:1.5%;}
+.goods_dyImg{ border-radius:5px;}
+.real{ color:#cc0000; font-size:15px; font-style:normal; font-weight:700;}
+.market{ color:#808080;  text-decoration:line-through; margin-left:8px; margin-top:2px;}
+.goodsName{ display:block; margin-top:5px; color:#333333; text-decoration:none; font-weight:bold; width:95%;}
+.tradeGw a{ width:110px; height:28px; line-height:28px; color:#fff;}
+.trade_a{ background-color:#E05252;}
+.Cart_a{ background-color:#FF8000;}
+
+.footer{ position:fixed; *position:absolute; bottom:0; left:0; z-index:111; height:45px; background-color:#424242; border-top:solid 1px #2A2A2A;}
+.footer_p{ float:left; width:25%; }
+.footer_p_a{ display:block; font-size:14px; line-height:16px; outline-style:none; padding:2px 0 0; text-align:center; color:#fff;}
+.footer_p_a:hover{ text-decoration:none; color:#f60;}
+.footer_p_a span{ background-image:url(../images/footnav_ico.png); background-position:0 50%; background-repeat:no-repeat; 
+background-size:auto 40px; display:block; height:24px; margin:0 auto; padding-top:2px; width:40px;}
+.footer_p_a span.footSpan_b{ background-position:-80px 50%;}
+.footer_p_a span.footSpan_c{ background-position:-120px 50%;}
+.footer_p_a span.footSpan_d{ background-position:-160px 50%;}
+.calrEm{ background-color:#d8615d; border-radius:10px; color:#fff; cursor:pointer; display:inline-block; font-family:Tahoma; font-size:10px; font-style:normal; font-weight:bold; 
+line-height:1.1em; margin:-5px 0 0 35px; padding:2px 5px 4px; position:relative; vertical-align:middle;}
+.lwCon a{ color:#CC0000;}
+.lwCon .lwCon_a{ color:#f60;}
+.moreDiv{ border:solid 1px #D3D3D3; border-radius:4px;}
+
+.load{ background-image:url(../images/load_imgs.gif); background-repeat:no-repeat; background-repeat:no-repeat; height:30px; width:30px; background-size:auto 30px;}
+/*首页 end*/
+
+/*登录页*/
+.login{}
+.login label{ width:35%;}
+.login input{ width:55%; background-color:#f5f5f5; height:35px; line-height:35px; border-top:solid #BCB9B9 1px; border-left:solid #BCB9B9 1px; border-bottom:solid #eee 1px; 
+border-right:solid #eee 1px;}
+.login input:focus{ background-color:#FFC;}
+.login_but{ width:85%; height:40px; line-height:40px; background-color:#FF0000;}
+.point_p{ top:72px; right:20%; color:#F00; display:none;}
+/*登录页 end*/
+/*搜索页*/
+.search{ background-color:#F6F6F6; padding:15px;}
+.search_Form{ height:38px; line-height:38px; background-color:#fff; border:solid 1px #D3D3D3; border-radius:4px;}
+.search_Form_inpl{ padding-right:75px;}
+.search_Form_inpl input{ width:100%; height:36px;}
+.search_Form_inpr{ top:0px; right:0px; background-color:#F6F6F6; border-image:none; border-radius:0 5px 5px 0; border-style:none none none solid; border-width:0 0 0 1px;
+ width:40px; height:36px; overflow:hidden; text-indent:-5000px; z-index:99; background:#F6F6F6 url(../images/butImg.png) no-repeat center center; border-color:#D3D3D3;}
+.seaCp_son{ padding-left:1.5%; background-color:#F6F6F6;}
+/*搜索页 end*/
+/*购物车*/
+.layerDiv{ background-color:#F6F6F6; padding:15px;}
+.boxCon{ background-color:#fff; border:solid 1px #D3D3D3; border-radius:4px;}
+.btn_Span{ color:red; padding:8px 0 0 8px;} 
+.btn_A{ background-color:#ed3131; border-radius:4px; color:#ffffff; font-size:14px; line-height:18px;
+    margin:5px 8px; padding:4px 16px; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.5);}
+.boxCon_spDl dt a img{ width:100px; height:100px; border-radius:4px;}
+.title_A{ font-size:15px;}
+.ckon{ width:87px; border:solid 1px #CECED0; border-radius:4px; margin-top:-3px;}
+
+.ckon input{ font-family: "PingHei","Lucida Grande","Lucida Sans Unicode","STHeiti","Helvetica","Arial","Verdana","sans-serif"; height:25px; line-height:25px; 
+border:none; background:Transparent; }
+.inpNumber{ width:20px; font-size:20px; font-weight:bold;}
+.inpNumber_l{ border-radius:4px 0 0 4px;}
+.ckon input.inpNumber_r{ border-radius:0 4px 4px 0;}
+.amount{ width:45px; font-size:15px; font-weight:700;}
+.ckon input.amount{ border-left:solid 1px #CECED0; border-right:solid 1px #CECED0;}
+.strike{ width:15px; height:20px; background:url(../images/del.png) no-repeat; right:10px; bottom:10px;}
+.colorcc0000{ color:#cc0000;}
+.pay_cart a{ width:50%;}
+.pay_cart a span{ height:35px; line-height:35px; color:#fff; font-size:15px; text-align:center; background-color:#6cb248; text-shadow:1px 1px 1px rgba(0, 0, 0, 0.5); border-radius:4px;}
+.mt3{ margin-top:3px;}
+.mt4{ margin-top:4px;}
+.ml4{ margin-left:4px;}
+.mr4{ margin-right:4px;}
+.pl3{ padding-left:4px;}
+.pr3{ padding-right:4px;}
+.pay_cart a span.btnpay{ background-color:#D22020;}
+/*购物车 end*/
+/*详情页*/
+.details_dt span{ float:left; width:50%;}
+.details_dt span img{ display:block;}
+.criticismDl dt{}
+.criticismDl dd{}
+.tb-thumb li{ float:left; margin-left:10px; border:solid 1px #C1B9B9; padding:1px 6px; height:26px; line-height:26px; text-align:center; margin-bottom:10px;}
+.tb-thumb li:hover{ border:solid 2px red; padding:0px 5px; cursor:pointer;}
+.tb-thumb li b{ position:absolute; width:10px; height:10px; background:url(../images/tb-selected-b.gif) no-repeat; bottom:0; right:0; display:none;}
+.tb-thumb li.tb-selected{ border:2px solid red; padding:0px 5px; position:relative;}
+.tb-thumb li.tb-selected b{ position:absolute; display:block;}
+.prompt_Div{ color:red; top:-13px; left:148px;}
+.prompt_Div p{ display:none;}
+.goodsThe{ height:37px; background:url(../images/goodsThe.jpg) repeat-x bottom;}
+.goodsThe li{ float:left; width:110px; background-color:#FFA2B1; margin-right:2px; height:33px; line-height:33px; color:#fff; cursor:pointer; text-align:center;}
+.goodsThe li.xxCurrent{ background-color:#FA3D5D;}
+.goodsThe li a:hover{ text-decoration:none;}
+.xxListData{ display:none; margin-top:15px;}
+/*详情页 end*/
+/*个人中心*/
+.userDiv img{ border-radius:30px;}
+.userDiv p{ font-size:15px; height:52px; line-height:52px;}
+.jiesDivA{ width:40%;}
+.jiesDivA div{ background-color:#fff; border:solid 1px #D3D3D3; border-radius:4px; height:50px;}
+.jiesDivson{ width:30%;}
+.jiesDivson div{ background-color:#fff; border:solid 1px #D3D3D3; border-radius:4px; height:50px;}
+.geRenul{}
+.geRenul li{ float:left; width:50%;}
+.geRenul li div{ background-color:#f8f8f8; border:1px solid #dadada; border-radius:4px; box-shadow:0 0 2px #dbdbdb; margin:8px; padding:14px 10px 6px;}
+.geRenul li div a{ display:block; font-size:14px; line-height:24px; margin:0 auto; text-align:center;}
+.geRenul li div a span{ background-image:url(../images/shortcut-nav-icons.png); background-repeat:no-repeat; display:block; height:48px;
+margin:0 auto; width:48px;}
+.geRenul li div a span.linka{ background-position:-1px -1px;}
+.geRenul li div a span.linkb{ background-position:-50px -1px;}
+.geRenul li div a span.linkc{ background-position:-99px -1px;}
+.geRenul li div a span.linkd{ background-position:-344px -1px;}
+/*个人中心 end*/
+/*客户服务*/
+.Con_son{ padding-bottom:40px;}
+.show_box{ min-height:320px;}
+.show_boxp{ color:#333} 
+.show_boxDiv{ width:219px; height:183px; background:url(../images/bg_contact.jpg) no-repeat;}
+/*客户服务 end*/
+/*全部订单*/
+.orderDl dt a img{ width:80px; height:80px;}
+.orderDl dd{ margin-left:90px;}
+.stateDiv div{ width:50%;}
+.stateDiv div a{ height:30px; line-height:32px; border-radius:4px; color:#fff;}
+.stateDiv div a.blueBut{ background-color:#62B6FF;}
+.stateDiv div a.greenBut{ background-color:#6CB248;}
+.stateDiv div a.redBut{ background-color:#D43B3B;}
+.stateDiv div a.grayBut{ background-color:#9E9E9E;}
+#blackBg{background:url(../images/blackBg.png); width:100%; height:100%; position:fixed; *position:absolute; top:0; bottom:0; right:0; left:0; z-index:11; display:none;}
+#deleCon{ width:230px; height:120px; margin:auto; background-color:#fff; position:fixed; *position:absolute; left:0;right:0; top:0; bottom:0; border-radius:4px; z-index:111; 
+text-align:center; display:none;}
+.NObut,.YESbut{ width:70px; height:30px; font-size:14px; border-radius:5px;}
+.NObut{ background-color:#C1C1C1;}
+.YESbut{ background-color:#DD6B55;}
+/*全部订单 end*/
+/*订单详情*/
+.order_XqDl dd{ margin-left:0px;}
+.addressH3{ height:32px; line-height:32px; border-bottom:solid 1px #D3D3D3;}
+.mt0{ margin-top:0;}
+.ml90{ margin-left:90px;}
+/*订单详情 end*/
+/*订单结算页*/
+.settP{ border-bottom:dashed 1px #D5CFCF;}
+.addto{}
+.addtoSpan_a{ line-height:25px; padding:8px 12px 6px 0;}
+.addtoSpan_b{ background:url(../images/icon_order.png) no-repeat scroll 0 0 / 100px 100px; height:15px; width:10px; margin-top:12px;}
+.endDiv{ height:1px; border-top:dashed red 1px;}
+.endDiv div{ background:url(../images/icon_order.png) no-repeat scroll -17px 0 / 100px 100px; height:20px; right:10px; top:-8px; width:30px;}
+.putA{ height:32px; line-height:32px; border-radius:4px; background-color:#cf2323; border:1px solid #c51e1e; margin-top:20px;  
+background-image:linear-gradient(to bottom, #d85252 0%, #cf2323 100%); text-shadow:1px 1px 0 rgba(0, 0, 0, 0.6);}
+/*订单结算页 end*/
+/*收货地址管理*/
+div a.putA_bg{ background-color:#9E9E9E; border:none; background-image:none; text-shadow:none;}
+.addreSs_ul li{ margin-bottom:15px;}
+.addreSs_ul li span{ line-height:33px; width:85px; padding-left:5px; font-size:14px; float:left; color:#333;}
+.addreSs_ul li p{ padding-left:85px;}
+.addreSs_ul li p input{ border-color:#bbb #ddd #ddd; border-image:none; border-style:solid; border-width:1px; font-size:16px; height:33px;
+ padding-left:9px; width:100%;}
+
+.addreSs_ul li p select{ appearance:none; -moz-appearance:none; -webkit-appearance:none; padding-right: 16px;/*为下拉小箭头留出一点位置，避免被文字覆盖，清除select默认样式*/
+ border-color: #bdbdbd #d5d5d5 #d5d5d5; border-image:none; border-style:solid; border-width:1px; color:#333333; font-size:16px; height:33px; padding-left:5px;
+ width:100%; background:url(../images/arrow_ico8.png) no-repeat right 13px #fff;}
+select::-ms-expand{ display:none; }/*清除select ie的默认选择框样式清除，隐藏下拉箭头*/
+
+.dzTextarea{ height:60px;}
+.dzTextarea textarea{ background-color:#fff; border-color:#bbb #ddd #ddd; border-image:none; border-style:solid; border-width:1px; color:#333333; 
+font-size:16px; height:100%; padding-left:9px; width:100%; line-height:160%;}
+.dzSubmit{ height:32px; line-height:32px; border-radius:4px; background-color:#cf2323; border:1px solid #c51e1e; margin-top:20px;  
+background-image:linear-gradient(to bottom, #d85252 0%, #cf2323 100%); text-shadow:1px 1px 0 rgba(0, 0, 0, 0.6);}
+
+.message_err{ color:#fff; text-align:center; height:45px; line-height:45px; width:230px; font-size:14px; background:#000; opacity:0.7; display:none;
+position:fixed; *position:absolute; left:0;right:0; top:0; bottom:0; border-radius:4px; z-index:111; margin:auto; border:solid 1px #000;}
+
+/*收货地址管理 end*/
+
+#cc_blackBg{background:url(../images/blackBg.png); width:100%; height:100%; position:fixed; *position:absolute; top:0; bottom:0; right:0; left:0; z-index:9998;}
+#area{ position:fixed; left:0;right:0; top:0; bottom:0; z-index:9999; width:100%; height:auto;}
+.areaSpan{ width:49px; height:49px; background:url(../images/areaImg.png) no-repeat; top:10px; right:10px;}
+
