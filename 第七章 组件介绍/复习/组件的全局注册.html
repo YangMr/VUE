@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        html,body,div,ul,li{margin:0;padding:0;}
+        ul{border:1px solid #ccc;width:350px;margin:50px auto;list-style: none;}
+        ul li{height:35px;line-height:35px;text-indent:30px;border-bottom:1px solid #ccc; background: purple;color:#fff;}
+    </style>
+</head>
+<body>
+    <div id="app1">
+
+        <list></list>
+
+        <ul>
+            <li v-for="item in array">{{item}}</li>
+        </ul>
+
+        <ul>
+            <li v-for="item in array">{{item}}</li>
+        </ul>
+    </div>
+
+
+</body>
+</html>
+<script>
+
+    new Vue({
+        el : "#app1",
+        data : {
+            array : ["张三","李四","王五"]
+        }
+    })
+
+</script>
