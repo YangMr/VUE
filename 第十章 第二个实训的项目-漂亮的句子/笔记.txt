@@ -1,0 +1,28 @@
+名言摘录:
+    App.vue 渲染的组件
+        Quote.vue
+            遍历数据
+        QuoteGrid.vue
+            接收展示的名言
+        Header.vue
+            标题
+            进度条
+            作用:管理发布的名言条数
+        NewQuote.vue :
+            文本域
+            添加按钮
+            主要作用:在文本域输入内容之后,点击按钮,可以把数据进行发送
+
+
+A:
+
+    <p>hello</p>
+    <p>hello</p>
+    <p>hello</p>
+    <p>hello</p>
+    var quotes = ["第1条","第2条","第3条","第4条","第5条"]
+    <app-quote v-for="item in quotes">{{item}}</app-quote>
+
+B:
+
+    <slot></slot>
