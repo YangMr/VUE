@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--导入Vue cdn 的网址-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" style="margin: 0 auto;width: 960px" >
+    <button @click="start">启动跑马灯效果</button>
+    <button @click="end">停止跑马灯效果</button>
+    <h4>{{msg}}</h4>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            timeId:null,
+            msg:'我是跑马灯,文字滚动效果',
+        },
+        methods:{
+            start(){
+                if(this.timeId == null){
+                    this.timeId = setInterval(()=>{
+                        let startMsg = this.msg.slice(0,1);
+                        let endMsg = this.msg.slice(1,this.msg.length+1);
+                        this.msg = endMsg+startMsg;
+                    },400);
+                }
+            },
+            end(){
+                if(this.timeId){
+                    clearInterval(this.timeId);
+                    this.timeId = null;
+                }
+            }
+        }
+    });
+</script>
+</body>
+</html>

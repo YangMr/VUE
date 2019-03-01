@@ -16,12 +16,11 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input
-                                v-model.lazy="userData.password"
+                                v-model.lazy.number="userData.password"
                                 type="password"
                                 id="password"
                                 class="form-control">
-                                <p>{{userData.password}}</p>
-                                <!-- .lazy 使v-model不再监听input事件 .trim .number 将string类型转化为number类型-->
+                                <p>{{yanzheng()}}</p>
                     </div>
                     <div class="form-group">
                         <label for="age">Age</label>
@@ -38,9 +37,10 @@
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                     <label for="message">Message</label><br>
                     <!-- Interpolation between <textarea>{{ test }}</textarea> doesn't work!-->
-                    <textarea
+                    <textarea style="white-space:pre;"
+                            v-model='message'
+
                             id="message"
-                            v-model="message"
                             rows="5"
                             class="form-control"></textarea>
                 </div>
@@ -70,14 +70,14 @@
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 form-group">
                     <label for="male">
                         <input
-                                v-model="gender"
+                                v-model="gerter"
                                 type="radio"
                                 id="male"
                                 value="Male"> Male
                     </label>
                     <label for="female">
                         <input
-                                v-model="gender"
+                                v-model="gerter"
                                 type="radio"
                                 id="female"
                                 value="Female"> Female
@@ -88,30 +88,24 @@
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 from-group">
                     <label for="priority">Priority</label>
                     <select
-                            v-model="selectedPriority"
+                            v-model="selected"
                             id="priority"
                             class="form-control">
-                        <option v-for="item in priorities" >{{item}}</option>
+                        <option  v-for="item in Prioritys">{{item}}</option>
                     </select>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <appSwitch v-model="dataSwitch"></appSwitch>
-                </div>
-            </div>
             <hr>
-
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-                    <button
+                    <button @click.prevent="flag=true"
                             class="btn btn-primary">Submit!
                     </button>
                 </div>
             </div>
         </form>
         <hr>
-        <div class="row">
+        <div class="row" v-if="flag">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -121,13 +115,13 @@
                         <p>Mail: {{userData.email}}</p>
                         <p>Password: {{userData.password}}</p>
                         <p>Age: {{userData.age}}</p>
-                        <p style="white-space:pre">Message: {{message}}</p>
+                        <p>Message: {{message}}</p>
                         <p><strong>Send Mail?</strong></p>
                         <ul>
                             <li v-for="item in sendMail">{{item}}</li>
                         </ul>
-                        <p>Gender: {{gender}}</p>
-                        <p>Priority: {{selectedPriority}}</p>
+                        <p>Gender: {{gerter}}</p>
+                        <p>Priority: {{selected}}</p>
                         <p>Switched:</p>
                     </div>
                 </div>
@@ -137,8 +131,18 @@
 </template>
 
 <script>
-    import Switch from './Switch.vue'
     export default {
+        methods : {
+            yanzheng : function(){
+                if(this.userData.password == ""){
+                    return "";
+                }else if(this.userData.password === 123456){
+                    return "密码正确";
+                }else{
+                    return "密码错误"
+                }
+            }
+        },
         data : function(){
             return {
                 userData : {
@@ -146,16 +150,13 @@
                     password : "",
                     age : 27
                 },
-                message : "A New Text",
+                message : "a new container",
                 sendMail : [],
-                gender : "Male",
-                priorities : ["High","Medium","Low"],
-                selectedPriority : "High",
-                dataSwitch : true
+                gerter : "male",
+                Prioritys : ["High","red","yellow"],
+                selected : "",
+                flag : false
             }
-        },
-        components : {
-            appSwitch :Switch
         }
     }
 </script>

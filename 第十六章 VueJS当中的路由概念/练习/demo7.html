@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--导入Vue cdn 的网址-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" style="margin: 0 auto;width: 960px" >
+    <input v-model="sreachKey"><input value="搜索" type="button" @click="sreach">
+    <ul>
+        <li v-for="item,index in clist">{{item}}</li>
+    </ul>
+</div>
+<script>
+    let list = ["1", "2", "3", "4"];
+    let clist = ["1", "2", "3", "4"]; // 实际工作汇中这个clist其实是会被我们深copy一份
+    var vm = new Vue({
+
+        el: '#app',
+        data: {
+            sreachKey:"",
+            list,
+            clist,
+        },
+        methods:{
+            sreach(){
+                this.clist = this.list.filter(item => {
+                    // if(item.indexOf(keywords) != -1)
+                    // 注意 ： ES6中，为字符串提供了一个新方法，叫做  String.prototype.includes('要包含的字符串')
+                    //  如果包含，则返回 true ，否则返回 false
+                    //  contain
+                    if (item.includes(this.sreachKey)) {
+                        return item
+                    }
+            });
+        }
+        }
+    });
+</script>
+</body>
+</html>

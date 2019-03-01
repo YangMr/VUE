@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <meta charset="UTF-8">
+      <title></title>
+      <style>
+         body,
+         ul,
+         li {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+         }
+         .list-body li:nth-child(even) {
+            background: yellow;
+         }
+         .list-body li:nth-child(odd) {
+            background: #fff;
+         }
+         .list-body li:hover {
+            background: green;
+         }
+         .list-body li.checkedColor {
+            background: green;
+         }
+      </style>
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+      <script>
+         let data = [
+            {
+               id:Date.now()+Math.random(),
+               name: '邓紫棋',
+               song: '泡沫',
+               checked: true,
+               album: 10
+            },
+            {
+               id:Date.now()+Math.random(),
+               name: '王杰',
+               song: '泡沫',
+               checked: true,
+               album: 10
+            },
+            {
+               id:Date.now()+Math.random(),
+               name: '邓紫棋',
+               song: '泡沫123',
+               checked: false,
+               album: 10
+            }
+         ]
+      </script>
+   </head>
+
+   <body>
+      <div class="wrap" id="app">
+         <div class="baidu">
+            <ul class="list list-head">
+               <li>
+                  <div>
+                     <input type="checkbox"
+                        v-model='isCheckedAll'
+                     />全选
+                  </div>
+                  <span>歌单</span>
+                  <span>歌手</span>
+                  <span>专辑</span>
+               </li>
+            </ul>
+            <ul class="list list-body">
+               <li
+                  v-for="item in songList"
+               >
+                  <div>
+                     <input v-model="item.checked" type="checkbox">
+                  </div>
+                  <span>{{item.song}}</span>
+                  <span>{{item.name}}</span>
+                  <span>{{item.album}}</span>
+               </li>
+            </ul>
+            <div class="select">
+               <span class="selectAll">
+
+                  <span>统计：</span>
+               </span>
+            </div>
+         </div>
+         {{isCheckedAll}}
+      </div>
+      <script>
+
+
+         new Vue({
+            el: '#app',
+            data: {
+               songList: data
+            },
+            computed: {
+               /*
+                  对计算属性操作
+                     只给计算属性一个函数，默认这个函数是在取值的时候触发的,这个函数是get函数
+
+                     设置值
+                        set(){}
+                     取值
+                        get(){}
+               */
+               isCheckedAll:{
+                  get(){
+                     console.log('取值');
+                     return this.songList.every(function(item){
+                        return item.checked
+                     });
+                  },
+                  set(newValue){
+                     console.log('设置值了');
+                     console.log(newValue);
+
+                     this.songList.forEach(item => item.checked = newValue)
+                  }
+               }
+            }
+
+         })
+
+      </script>
+   </body>
+
+</html>

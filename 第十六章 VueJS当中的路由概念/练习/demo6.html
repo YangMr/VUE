@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--导入Vue cdn 的网址-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+<div id="app" style="margin: 0 auto;width: 960px" >
+    <ul>
+        <li v-for="item,index in list" @click="removeHandel(index)">{{item}}</li>
+    </ul>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            list:["1", "2", "3", "4"]
+        },
+        methods:{
+            removeHandel(index){
+               this.list.splice(index,1);
+           }
+        }
+    });
+</script>
+</body>
+</html>

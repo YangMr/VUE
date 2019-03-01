@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--导入Vue cdn 的网址-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <style type="text/css">
+        #app{height: 260px;width: 760px;margin: 100px auto;padding: 145px 120px 95px;background: rgba(0,0,0,0.3);}
+        #choose{height: 50px;background: rgba(224,241,239,1);border: 1px solid #e4e5e6;font-size: 18px;line-height: 50px;padding: 0 10px;}
+        ul {padding: 0;margin: 0;list-style: none;background: #ebf7f6;}
+        #type {height: 210px;padding: 17px 0 16px 28px;}
+        #type li {height: 44px;color: #8a8a8a;line-height: 44px;}
+        #type a {margin: 0 12px 0 11px;color: #000;}
+        .active {background: rgb(40, 165, 196);}
+    </style>
+</head>
+<body>
+<div id="app" style="margin: 0 auto;width: 960px" >
+    <nav id="choose">
+        你的选择:
+        <mark v-for="item,key in choose">
+            {{item}}
+            <a href="javascript:;" @click="removeHandle(key)">x</a>
+        </mark>
+    </nav>
+    <ul id="type">
+       <li v-for="i,line in ldata">{{i.title}}:
+           <a v-for="item,index in i.list"
+              @click="addChooseHandle(line,index,item)"
+              v-bind:class="{active:i.index === index}"
+           >
+               {{item}}
+           </a>
+       </li>
+    </ul>
+</div>
+<script>
+    var ldata = [
+        {
+            title: '品牌',
+            list: ["苹果", "小米", "锤子", "魅族", "华为", "三星", "OPPO", "vivo", "乐视", "360", "中兴", "索尼"]
+        },
+        {
+            title: '尺寸',
+            list: ["3.0英寸以下", "3.0-3.9英寸", "4.0-4.5英寸", "4.6-4.9英寸", "5.0-5.5英寸", "6.0英寸以上"]
+        },
+        {
+            title: '系统',
+            list: ["安卓", "(", "Android", ")", "苹果", "(", "IOS", ")", "微软", "(", "WindowsPhone", ")", "无", "其他"]
+        },
+        {
+            title: '网络',
+            list: ["联通3G", "双卡单4G", "双卡双4G", "联通4G", "电信4G", "移动4G"]
+        }
+    ]
+    ldata.forEach(item => item.index = -1);
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            listIndex:0,
+            ldata ,
+            choose:{},
+        },
+        methods:{
+            addChooseHandle(line, index, item){
+                this.$set(this.choose,line,item);
+                // 在数据中增加了个index记录选中样式
+                this.ldata[line].index = index;
+            },
+            removeHandle(key){
+                this.$delete(this.choose,key); // 删除对应key
+                this.ldata[key].index=-1;// 将标记class样式数据调回初始
+            }
+        }
+    });
+</script>
+</body>
+</html>
