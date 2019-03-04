@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--导入Vue cdn 的网址-->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <style>
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="box">
+    <input v-model="search">
+    <ul>
+        <li v-for="i in computedSearch">
+            {{i}}
+        </li>
+    </ul>
+
+</div>
+<script type="text/javascript">
+    var vm = new Vue({
+        el:"#box",
+
+        data:{
+            search:"",
+            list:["aa","abb","ccc"]
+        },
+        computed : {
+            computedSearch : function(){
+                return this.list.filter(item=>{
+                    return  item.indexOf(this.search) != -1;
+
+                })
+            }
+        }
+
+
+    })
+</script>
+</body>
+</html>

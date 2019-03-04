@@ -26,31 +26,6 @@
          }
       </style>
      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
-      <script>
-         let data = [
-            {
-               id:Date.now()+Math.random(),
-               name: '邓紫棋',
-               song: '泡沫',
-               checked: true,
-               album: 10
-            },
-            {
-               id:Date.now()+Math.random(),
-               name: '王杰',
-               song: '泡沫',
-               checked: true,
-               album: 10
-            },
-            {
-               id:Date.now()+Math.random(),
-               name: '邓紫棋',
-               song: '泡沫123',
-               checked: false,
-               album: 10
-            }
-         ]
-      </script>
    </head>
 
    <body>
@@ -89,8 +64,31 @@
          </div>
          {{isCheckedAll}}
       </div>
-      <script>
 
+      <script>
+      let data = [
+         {
+            id:Date.now()+Math.random(),
+            name: '邓紫棋',
+            song: '泡沫',
+            checked: true,
+            album: 10
+         },
+         {
+            id:Date.now()+Math.random(),
+            name: '王杰',
+            song: '泡沫',
+            checked: true,
+            album: 10
+         },
+         {
+            id:Date.now()+Math.random(),
+            name: '邓紫棋',
+            song: '泡沫123',
+            checked: false,
+            album: 10
+         }
+      ]
 
          new Vue({
             el: '#app',
@@ -98,26 +96,15 @@
                songList: data
             },
             computed: {
-               /*
-                  对计算属性操作
-                     只给计算属性一个函数，默认这个函数是在取值的时候触发的,这个函数是get函数
-
-                     设置值
-                        set(){}
-                     取值
-                        get(){}
-               */
                isCheckedAll:{
                   get(){
-                     console.log('取值');
                      return this.songList.every(function(item){
+                         console.log(item)
                         return item.checked
                      });
                   },
                   set(newValue){
-                     console.log('设置值了');
-                     console.log(newValue);
-
+                     console.log("new：" +newValue);
                      this.songList.forEach(item => item.checked = newValue)
                   }
                }

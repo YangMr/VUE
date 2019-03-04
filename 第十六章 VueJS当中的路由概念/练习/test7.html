@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app" style="margin: 0 auto;width: 960px" >
+        <input v-model="searchKey"><input value="搜索" type="button" @click="search">
+        <ul>
+            <li v-for="item,index in clist">{{item}}</li>
+        </ul>
+    </div>
+</body>
+</html>
+<script>
+    let list = ["1", "2", "3", "4"];
+    let clist = ["1", "2", "3", "4"]; // 实际工作汇中这个clist其实是会被我们深copy一份
+    new Vue({
+        el : "#app",
+        data : {
+            searchKey:"",
+            list,
+            clist,
+        },
+        methods : {
+            search : function(){
+                this.clist = this.list.filter(item =>{
+                    if(item.includes(this.searchKey)){
+                        return item;
+                    }
+                })
+            }
+        }
+    })
+
+</script>

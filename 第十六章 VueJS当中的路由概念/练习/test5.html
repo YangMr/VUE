@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+    <style>
+       body,
+       ul,
+       li {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+       }
+       .list-body li:nth-child(even) {
+          background: yellow;
+       }
+       .list-body li:nth-child(odd) {
+          background: #fff;
+       }
+       .list-body li:hover {
+          background: green;
+       }
+       .list-body li.checkedColor {
+          background: green;
+       }
+    </style>
+</head>
+<body>
+    <div class="wrap" id="app">
+       <div class="baidu">
+          <ul class="list list-head">
+             <li>
+                <div>
+                   <input v-model="isCheckedAll" type="checkbox" />全选
+                </div>
+                <span>歌单</span>
+                <span>歌手</span>
+                <span>专辑</span>
+             </li>
+          </ul>
+          <ul class="list list-body">
+             <li
+                v-for="item in songList"
+             >
+                <div>
+                   <input v-model="item.checked" type="checkbox">
+                </div>
+                <span>{{item.song}}</span>
+                <span>{{item.name}}</span>
+                <span>{{item.album}}</span>
+             </li>
+          </ul>
+          <div class="select">
+             <span class="selectAll">
+
+                <span>统计：</span>
+             </span>
+          </div>
+       </div>
+       <p>hello : {{isCheckedAll}}</p>
+    </div>
+</body>
+</html>
+<script>
+
+    let data = [
+       {
+          id:Date.now()+Math.random(),
+          name: '邓紫棋',
+          song: '泡沫',
+          checked: true,
+          album: 10
+       },
+       {
+          id:Date.now()+Math.random(),
+          name: '王杰',
+          song: '泡沫',
+          checked: true,
+          album: 10
+       },
+       {
+          id:Date.now()+Math.random(),
+          name: '邓紫棋',
+          song: '泡沫123',
+          checked: false,
+          album: 10
+       }
+    ];
+    new Vue({
+        el : "#app",
+        data : {
+            songList : data
+
+        },
+        computed : {
+            isCheckedAll : {
+                get(){
+                    return this.songList.every(function(item){
+                        return item.checked ;
+                    })
+                },
+                set(newValue){
+                    this.songList.forEach(function(item){
+                        item.checked = newValue
+                    })
+                }
+            }
+        }
+
+    })
+</script>

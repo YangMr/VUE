@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
     <!--导入Vue cdn 的网址-->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
     <style type="text/css">
@@ -16,26 +18,23 @@
     </style>
 </head>
 <body>
-
-<div id="app" style="margin: 0 auto;width: 960px" >
-    <nav id="choose">
-        你的选择:
-        <mark v-for="(item,key) in choose">
-            {{item}} / {{key}}
-            <a href="javascript:;" @click="removeHandle(key)">x</a>
-        </mark>
-    </nav>
-    <ul id="type">
-       <li v-for="i,line in ldata">{{i.title}}:
-           <a v-for="item,index in i.list"
-              @click="addChooseHandle(line,index,item)"
-              v-bind:class="{active:i.index === index}"
-           >
-               {{item}}
-           </a>
-       </li>
-    </ul>
-</div>
+    <div id="app" style="margin: 0 auto;width: 960px">
+        <nav id="choose">
+            你的选择:
+            <mark v-for="(item,key) in choose">
+                {{item}}
+                <a @click="del(key)" href="javascript:;" >x</a>
+            </mark>
+        </nav>
+        <ul id="type">
+            <li v-for="(item,line) in ldata">
+                {{item.title}}:
+                <a href="javascript:;" @click="add(line,index,msg)" v-for="(msg,index) in item.list">{{msg}}</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
 <script>
     var ldata = [
         {
@@ -54,30 +53,24 @@
             title: '网络',
             list: ["联通3G", "双卡单4G", "双卡双4G", "联通4G", "电信4G", "移动4G"]
         }
-    ]
-    // ldata.forEach(item => item.index = -1);
+    ];
 
 
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            listIndex:0,
-            ldata ,
-            choose:{},
+    new Vue({
+        el : "#app",
+        data : {
+            ldata,
+            choose :{}
         },
-        methods:{
-            addChooseHandle(line, index, item){
+        methods : {
+            add : function(line,index,item){
                 this.$set(this.choose,line,item);
-                // 在数据中增加了个index记录选中样式
-                this.ldata[line].index = index;
-
+                this.ldata[index].index = index;
             },
-            removeHandle(key){
-                this.$delete(this.choose,key); // 删除对应key
-                this.ldata[key].index=-1;// 将标记class样式数据调回初始
+            del : function(fn1){
+                this.$delete(this.choose,fn1)
             }
         }
-    });
+    })
+
 </script>
-</body>
-</html>

@@ -24,7 +24,9 @@
                 if(this.timeId == null){
                     this.timeId = setInterval(()=>{
                         let startMsg = this.msg.slice(0,1);
+                        console.log("startMsg:" + startMsg + "--" + this.msg) ;
                         let endMsg = this.msg.slice(1,this.msg.length+1);
+                        console.log("endMsg:" + endMsg)
                         this.msg = endMsg+startMsg;
                     },400);
                 }

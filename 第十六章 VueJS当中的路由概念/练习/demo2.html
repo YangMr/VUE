@@ -18,14 +18,14 @@
 	<body>
 		<div id="app">
 			<input
-				v-for="item,i in tabData"
+				v-for="(item,i) in tabData"
 				type="button"
 				v-bind:value="item.title"
 				v-bind:class="{red:i === index}"
 				v-on:click="tabHandle(i)"
 			/>
 			<ul
-				v-for="item,j in tabData"
+				v-for="(item,j) in tabData"
 				v-show="index===j"
 			>
 				<li v-for="option in item.list">
