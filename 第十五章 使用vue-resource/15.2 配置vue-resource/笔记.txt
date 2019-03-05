@@ -1,0 +1,40 @@
+vue-resource:
+    安装
+        cnpm install --save vue-resource
+    使用:
+        import vueResource from 'vue-resource'
+        Vue.use(VueResource)
+
+    get:
+        请求:
+        this.$http.get("请求的地址").then(function(response){
+
+        },function(error){
+
+        })
+        发送:
+        let data = {name : "jack",age : 20}
+        this.$http.get("请求的地址",发送的数据{params : data}).then(function(response){
+
+        },function(error){
+
+        })
+    post:
+    请求:
+    this.$http.post("请求的地址").then(function(response){
+
+    },function(error){
+
+    })
+    发送:
+    let data = {name : "jack",age : 20}
+    this.$http.post("请求的地址",发送的数据data).then(function(response){
+
+    },function(error){
+
+    })
+
+Axios :
+
+    安装:
+        cnpm install --save axios
