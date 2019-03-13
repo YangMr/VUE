@@ -6,6 +6,5 @@ export default {
         {path : "", redirect:'/reg'},
         {path : "/reg", component : Reg},
         {path : "/login",component : Login}
-    ],
-     linkActiveClass: 'active'
+    ]
 }

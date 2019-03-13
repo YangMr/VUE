@@ -1,0 +1,13 @@
+import User from './components/User.vue'
+import Login from './components/Login.vue'
+import Sign from './components/Sign.vue'
+import List from './components/List.vue'
+
+export default {
+    routes : [
+        {path : "/user", component : User, name : "u"},
+        {path : "/login", component : Login, name : "l"},
+        {path : "/sign", component : Sign, name : "s"},
+        {path : "/list", component : List, name : "t"}
+    ]
+}

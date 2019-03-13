@@ -1,0 +1,19 @@
+
+import VueRouter from 'vue-router'
+Vue.use(VueRouter)
+
+<router-link v-bind:to="{name : 'u'}"></router-link>
+<router-view></router-view>
+
+import router from './router.js'
+
+const router = new VueRouter({
+    routes : router.routes,
+    mode : "history",
+    linkActiveClass : "active"
+})
+
+new Vue({
+    el : "#app",
+    router : router
+})
