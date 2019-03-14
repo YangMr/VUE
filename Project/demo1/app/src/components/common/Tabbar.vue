@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mt-tabbar v-model="selected">
+      <mt-tabbar fixed v-model="selected">
         <mt-tab-item id="home">
           <img slot="icon" src="../../assets/logo.png">
           首页
@@ -24,7 +24,6 @@
 <script>
     export default {
         name: "Tabbar",
-        props : ['title'],
         data : function(){
           return {
              selected : "home"
@@ -35,16 +34,16 @@
             this.$router.push({name : this.selected});
             switch (this.selected) {
               case 'home' :
-                this.$emit('changeTitle','首页');
+                this.$store.commit('changeName',"首页");
                 break;
               case 'search' :
-                this.$emit('changeTitle','搜索');
+                this.$store.commit('changeName',"搜索");
                 break;
               case  'deloyment' :
-                this.$emit('changeTitle','就业');
+                this.$store.commit('changeName',"就业");
                 break;
               case 'my' :
-                this.$emit('changeTitle','我的');
+                this.$store.commit('changeName',"我的");
                 break;
             }
           }

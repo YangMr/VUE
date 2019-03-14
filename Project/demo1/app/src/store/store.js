@@ -4,16 +4,26 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state : {
-    flag : false
+    show : false,
+    name : "首页"
   },
   getters : {
-    changeFlag : function (state) {
-      return state.flag;
+    show : function (state) {
+      return state.show;
+    },
+    getName : function (state) {
+      return state.name;
     }
   },
   mutations : {
-    cFlag : function (state) {
-      state.flag = true
+    changeShow : function (state) {
+      state.show = true;
+    },
+    backShow : function (state) {
+      state.show = false;
+    },
+    changeName : function(state,name){
+      state.name = name;
     }
   }
 })

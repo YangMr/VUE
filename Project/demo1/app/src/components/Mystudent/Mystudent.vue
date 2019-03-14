@@ -7,8 +7,10 @@
 <script>
     export default {
         name: "Mystudent",
-        created() {
-          this.$store.commit('cFlag')
+        mounted() {
+          // console.log(this.$route.name)
+          this.$store.commit('changeShow');
+          this.$store.commit("changeName",'我的学生')
         }
     }
 </script>
